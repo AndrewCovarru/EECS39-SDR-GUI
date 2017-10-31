@@ -48,7 +48,6 @@ public class ipKeyPad extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField ipField = new JFormattedTextField();
-		ipField.setEditable(false);
 		JLabel lblipuency = new JLabel("IP Address:");
 		lblipuency.setForeground(new Color(255, 250, 250));
 		lblipuency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));

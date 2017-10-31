@@ -12,7 +12,10 @@ import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener; 
+import java.awt.event.WindowListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import javax.swing.JSeparator;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -36,6 +39,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
+
 import javax.swing.JEditorPane;
 //import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
@@ -47,7 +53,7 @@ public class homeScreen extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	//private TcpClient tcpClient;
+	private TcpClient tcpClient;
 	private Thread tcpClientThread; 
 	
 	//Creates String for execute method
@@ -64,7 +70,7 @@ public class homeScreen extends JFrame {
 	private String atanMath;
 	private String gain;
 	private String volume;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -89,12 +95,12 @@ public class homeScreen extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JFormattedTextField freqDisplay = new JFormattedTextField();
+		JFormattedTextField freqDisplay = 	new JFormattedTextField();
+		freqDisplay.setEditable(false);
 		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		freqDisplay.setForeground(new Color(255, 250, 250));
 		freqDisplay.setBackground(new Color(0, 0, 0));
 		freqDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 42));
-		freqDisplay.setEditable(false);
 		freqDisplay.setText("Frequency");
 		
 		JFormattedTextField gainField = new JFormattedTextField();
@@ -109,7 +115,9 @@ public class homeScreen extends JFrame {
 		JSlider gainSlider = new JSlider();
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				gainField.setText("" + gainSlider.getValue());
+				double percentage = (double)gainSlider.getValue()/100;
+				double gainPercent = Math.round(49.6 * percentage * 100) / 100; 
+				gainField.setText("" + gainPercent);
 				gain = gainField.getText();
 			}
 		});
@@ -156,7 +164,7 @@ public class homeScreen extends JFrame {
 				 keypad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
 			                freqDisplay.setText(keypad.returnFreq());
-			                frequency = freqDisplay.getText();
+			               frequency = freqDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
 			            }
@@ -176,31 +184,7 @@ public class homeScreen extends JFrame {
 		});
 		
 		JFormattedTextField ipDisplay = new JFormattedTextField();
-		ipDisplay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ipKeyPad keypad = new ipKeyPad();
-				keypad.setVisible(true);
-				
-				 keypad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                ipDisplay.setText(keypad.returnip());
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-			}
-		});
-		ipDisplay.setEditable(false);
+		ipDisplay.setEditable(true);
 		
 		JButton btnIpAddress = new JButton("IP Address");
 		btnIpAddress.addActionListener(new ActionListener() {
@@ -211,6 +195,17 @@ public class homeScreen extends JFrame {
 				 keypad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
 			                ipDisplay.setText(keypad.returnip());
+			            	 try {
+									tcpClient = new TcpClient(keypad.returnip(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+					                tcpClientThread = new Thread(tcpClient);
+					                tcpClientThread.start();
+								} catch (UnknownHostException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 			            }
 			            public void windowActivated(WindowEvent arg0) {
 			            }
@@ -231,21 +226,34 @@ public class homeScreen extends JFrame {
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//System.out.println("Frequency:" + frequency);
+				System.out.println("Frequency:" + frequency);
 				Parameters.FREQUENCY.append(frequency);
 				
-				//System.out.println("Modulation Mode: " + modulationMode);
+				System.out.println("Modulation Mode: " + modulationMode);
 				Parameters.MODULATION_MODE.append(modulationMode);
 				
-				//System.out.println("Squelch: " + squelch);
-				Parameters.SQUELCH.append(squelch);
+				System.out.println("Squelch: " + squelch);
+				Parameters.SQUELCH_LEVEL.append(squelch);
 				
-				//System.out.println("Gain: "+ gain);
-				Parameters.GAIN.append(gain);
+				System.out.println("Gain: "+ gain);
+				Parameters.TUNER_GAIN.append(gain);
 				
-				//System.out.println("Volume:" + volume);
+				System.out.println("Volume:" + volume);
 				Parameters.VOLUME.append(volume);
 				
+				Parameters.SAMPLE_RATE.append("2400000");
+				Parameters.RESAMPLE_RATE.append("48000");
+				
+				for (Parameters p : Parameters.values())
+		        {
+		            for(String s : p.getDameonCallableStrings()){
+
+		                tcpClient.sendToServer(s);
+		            }
+		           // MainActivity.getTcpClient().sendToServer("EXECUTE");
+		            p.resetValues();
+		        }
+				tcpClient.sendToServer("EXECUTE");	
 			}
 		});
 		
@@ -258,7 +266,7 @@ public class homeScreen extends JFrame {
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		
 		JComboBox modMode = new JComboBox();
-		modMode.setModel(new DefaultComboBoxModel(new String[] {"FM", "WBFM", "RAW", "AM", "USB", "LSB"}));
+		modMode.setModel(new DefaultComboBoxModel(new String[] {"fm", "wbfm", "raw", "am", "usb", "lsb"}));
 		modMode.setMaximumRowCount(6);
 		modMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

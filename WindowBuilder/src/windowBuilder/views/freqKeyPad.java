@@ -53,7 +53,6 @@ public class freqKeyPad extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField freqField = new JFormattedTextField();
-		freqField.setEditable(false);
 		JLabel lblFrequency = new JLabel("Frequency:");
 		lblFrequency.setForeground(new Color(255, 250, 250));
 		lblFrequency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
