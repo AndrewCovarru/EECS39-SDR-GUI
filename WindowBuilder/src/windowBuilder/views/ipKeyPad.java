@@ -2,7 +2,6 @@ package windowBuilder.views;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -20,10 +19,8 @@ import java.awt.Font;
 public class ipKeyPad extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
-	/**
-	 * Launch the application.
-	 */
+	
+	/*
 	public static void main(String[] args) {
 		try {
 			ipKeyPad dialog = new ipKeyPad();
@@ -33,6 +30,8 @@ public class ipKeyPad extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	*/
+	
 	public String ip;
 
 	/**
@@ -50,7 +49,7 @@ public class ipKeyPad extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField ipField = new JFormattedTextField();
 		ipField.setEditable(false);
-		JLabel lblipuency = new JLabel("IP:");
+		JLabel lblipuency = new JLabel("IP Address:");
 		lblipuency.setForeground(new Color(255, 250, 250));
 		lblipuency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		JButton num1 = new JButton("1");
@@ -144,7 +143,7 @@ public class ipKeyPad extends JDialog {
 			}
 		});
 		JButton numPeriod = new JButton(".");
-		num0.addActionListener(new ActionListener() {
+		numPeriod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(ipField.getText() == null)
 					ipField.setText(".");

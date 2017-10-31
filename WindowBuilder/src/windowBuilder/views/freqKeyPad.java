@@ -16,14 +16,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window.Type;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class freqKeyPad extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
-	/**
-	 * Launch the application.
-	 */
+	public String freq;
+	/*
+	 Launch the application.
+	 
 	public static void main(String[] args) {
 		try {
 			freqKeyPad dialog = new freqKeyPad();
@@ -42,6 +45,7 @@ public class freqKeyPad extends JDialog {
 		return freq; 
 	}
 	public freqKeyPad() {
+		setType(Type.POPUP);
 
 		setBounds(100, 100, 275, 238);
 		getContentPane().setLayout(new BorderLayout());
@@ -143,30 +147,23 @@ public class freqKeyPad extends JDialog {
 					freqField.setText(freqField.getText() + "0");
 			}
 		});
-		JButton numKhz = new JButton("Khz");
-		numKhz.addActionListener(new ActionListener() {
+		JButton numPeriod = new JButton(".");
+		numPeriod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(freqField.getText() == null) {
-					freqField.setText("1000");
-				}
-				else {
-					long freqKhz = Long.parseLong(freqField.getText());
-					freqKhz = freqKhz * 1000;
-					freqField.setText(String.valueOf(freqKhz));
-				}
+				if(freqField.getText() == null)
+					freqField.setText(".");
+				else
+					freqField.setText(freqField.getText() + ".");
 			}
 		});
-		JButton numGhz = new JButton("Ghz");
-		numGhz.addActionListener(new ActionListener() {
+		
+		JComboBox prefixSelect = new JComboBox();
+		prefixSelect.setModel(new DefaultComboBoxModel(new String[] {"Hz", "KHz", "GHz"}));
+		prefixSelect.setMaximumRowCount(3);
+		prefixSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(freqField.getValue() == null) {
-					freqField.setText("1000000000");
-				}
-				else {
-					long freqGhz = Long.parseLong(freqField.getText());
-					freqGhz = freqGhz * 1000000000;
-					freqField.setText(String.valueOf(freqGhz));
-				}
+				String prefix = prefixSelect.getSelectedItem().toString();
+				
 			}
 		});
 		
@@ -175,21 +172,13 @@ public class freqKeyPad extends JDialog {
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(num7)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num8)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num9)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(numGhz))
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING, false)
-							.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addGap(6)
 								.addComponent(lblFrequency)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(freqField))
-							.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addComponent(num1)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(num2)
@@ -197,15 +186,24 @@ public class freqKeyPad extends JDialog {
 								.addComponent(num3)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(num0)))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(num4)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num5)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num6)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(numKhz)))
-					.addContainerGap(63, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num7)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num8)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num9)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(prefixSelect, 0, 0, Short.MAX_VALUE))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num4)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num5)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num6)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(numPeriod))))
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -222,7 +220,7 @@ public class freqKeyPad extends JDialog {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(num4)
-						.addComponent(numKhz, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(numPeriod, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(num5)
 						.addComponent(num6))
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -230,7 +228,7 @@ public class freqKeyPad extends JDialog {
 						.addComponent(num7)
 						.addComponent(num8)
 						.addComponent(num9)
-						.addComponent(numGhz))
+						.addComponent(prefixSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);

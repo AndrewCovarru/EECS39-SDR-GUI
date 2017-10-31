@@ -1,7 +1,5 @@
 package windowBuilder.views;
-
 import java.awt.BorderLayout;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox; 
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,11 +36,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.JEditorPane;
+//import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
-import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
-
-public class BasicAttempt extends JFrame {
+public class homeScreen extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -49,15 +48,29 @@ public class BasicAttempt extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	private TcpClient tcpClient;
+	//private TcpClient tcpClient;
 	private Thread tcpClientThread; 
 	
-			
+	//Creates String for execute method
+	private String deviceIndex;
+	private String enableOption;
+	private String frequency;
+	private String modulationMode;
+	private String overSampling;
+	private String ppmError;
+	private String sampleRate;
+	private String squelchDelay;
+	private String squelch;
+	private String resampleRate;
+	private String atanMath;
+	private String gain;
+	private String volume;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BasicAttempt frame = new BasicAttempt();
+					homeScreen frame = new homeScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,9 +82,9 @@ public class BasicAttempt extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BasicAttempt() {
+	public homeScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 459, 269);
+		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(105, 105, 105));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,6 +111,7 @@ public class BasicAttempt extends JFrame {
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				gainField.setText("" + gainSlider.getValue());
+				gain = gainField.getText();
 			}
 		});
 		gainSlider.setBackground(new Color(105, 105, 105));
@@ -108,6 +122,7 @@ public class BasicAttempt extends JFrame {
 		volSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				volField.setText("" + volSlider.getValue());
+				volume = volField.getText();
 			}
 		});
 		volSlider.setBackground(new Color(105, 105, 105));
@@ -117,6 +132,7 @@ public class BasicAttempt extends JFrame {
 		squSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				squField.setText("" + squSlider.getValue());
+				squelch = squField.getText();
 			}
 		});
 		squSlider.setBackground(new Color(105, 105, 105));
@@ -141,6 +157,7 @@ public class BasicAttempt extends JFrame {
 				 keypad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
 			                freqDisplay.setText(keypad.returnFreq());
+			                frequency = freqDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
 			            }
@@ -160,9 +177,31 @@ public class BasicAttempt extends JFrame {
 		});
 		
 		JFormattedTextField ipDisplay = new JFormattedTextField();
-		
-		JLabel lblIpAddress = new JLabel("IP Address");
-		lblIpAddress.setForeground(Color.WHITE);
+		ipDisplay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ipKeyPad keypad = new ipKeyPad();
+				keypad.setVisible(true);
+				
+				 keypad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                ipDisplay.setText(keypad.returnip());
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+			}
+		});
+		ipDisplay.setEditable(false);
 		
 		JButton btnIpAddress = new JButton("IP Address");
 		btnIpAddress.addActionListener(new ActionListener() {
@@ -190,76 +229,129 @@ public class BasicAttempt extends JFrame {
 			}
 		});
 		
+		JButton btnExecute = new JButton("Execute");
+		btnExecute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Frequency:" + frequency);
+				System.out.println("Modulation Mode: " + modulationMode);
+				System.out.println("Squelch: " + squelch);
+				System.out.println("Gain: "+ gain);
+				System.out.println("Volume:" + volume);
+			}
+		});
+		
+		JButton btnNewButton = new JButton("Sample Rate");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		
+		JComboBox modMode = new JComboBox();
+		modMode.setModel(new DefaultComboBoxModel(new String[] {"FM", "WBFM", "RAW", "AM", "USB", "LSB"}));
+		modMode.setMaximumRowCount(6);
+		modMode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modulationMode = modMode.getSelectedItem().toString();
+			}
+		});
+		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(squSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(volLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(volField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addComponent(freqDisplay)
+							.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnExecute)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(2)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(btnIpAddress, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnFrequency, Alignment.LEADING)
+										.addComponent(modMode, Alignment.LEADING, 0, 93, Short.MAX_VALUE))
+									.addGap(18)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(ipDisplay, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+										.addComponent(formattedTextField))))
+							.addGap(227))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(gainLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+							.addComponent(squSlider, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+							.addGap(450))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(squLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(squField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addComponent(gainSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnFrequency))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(4)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(10)
-									.addComponent(btnIpAddress))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblIpAddress)
-									.addGap(18)
-									.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap())
+							.addComponent(squField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(524, Short.MAX_VALUE))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(volLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(volField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(520, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+					.addGap(460))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(gainLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(540, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(gainSlider, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+					.addGap(450))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnFrequency)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblIpAddress)
-								.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnFrequency)
+							.addGap(9)
+							.addComponent(btnIpAddress)))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(volLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(volField, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnIpAddress))
+								.addComponent(volField, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-							.addGap(5)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE, false)
+							.addGap(86))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(17)
+							.addComponent(modMode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(gainLabel)
 								.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(103)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(squLabel)
 								.addComponent(squField, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6))))
+							.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnExecute))
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
