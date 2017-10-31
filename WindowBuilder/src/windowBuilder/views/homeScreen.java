@@ -39,7 +39,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JEditorPane;
 //import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
-
 public class homeScreen extends JFrame {
 
 	private JPanel contentPane;
@@ -232,11 +231,21 @@ public class homeScreen extends JFrame {
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Frequency:" + frequency);
-				System.out.println("Modulation Mode: " + modulationMode);
-				System.out.println("Squelch: " + squelch);
-				System.out.println("Gain: "+ gain);
-				System.out.println("Volume:" + volume);
+				//System.out.println("Frequency:" + frequency);
+				Parameters.FREQUENCY.append(frequency);
+				
+				//System.out.println("Modulation Mode: " + modulationMode);
+				Parameters.MODULATION_MODE.append(modulationMode);
+				
+				//System.out.println("Squelch: " + squelch);
+				Parameters.SQUELCH.append(squelch);
+				
+				//System.out.println("Gain: "+ gain);
+				Parameters.GAIN.append(gain);
+				
+				//System.out.println("Volume:" + volume);
+				Parameters.VOLUME.append(volume);
+				
 			}
 		});
 		
