@@ -38,6 +38,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
+
 
 public class BasicAttempt extends JFrame {
 
@@ -47,6 +49,10 @@ public class BasicAttempt extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	private TcpClient tcpClient;
+	private Thread tcpClientThread; 
+	
+			
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -129,7 +135,7 @@ public class BasicAttempt extends JFrame {
 		JButton btnFrequency = new JButton("Frequency");
 		btnFrequency.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				KeyPad keypad = new KeyPad();
+				freqKeyPad keypad = new freqKeyPad();
 				keypad.setVisible(true);
 				
 				 keypad.addWindowListener(new WindowListener() {
@@ -153,46 +159,92 @@ public class BasicAttempt extends JFrame {
 			}
 		});
 		
+		JFormattedTextField ipDisplay = new JFormattedTextField();
+		
+		JLabel lblIpAddress = new JLabel("IP Address");
+		lblIpAddress.setForeground(Color.WHITE);
+		
+		JButton btnIpAddress = new JButton("IP Address");
+		btnIpAddress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ipKeyPad keypad = new ipKeyPad();
+				keypad.setVisible(true);
+				
+				 keypad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                ipDisplay.setText(keypad.returnip());
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+			}
+		});
+		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(volSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(squSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(squSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(volLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(volField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addComponent(freqDisplay, Alignment.LEADING)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+						.addComponent(freqDisplay)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(gainLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(squLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(squField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-						.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnFrequency))
+						.addComponent(gainSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnFrequency))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(4)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(10)
+									.addComponent(btnIpAddress))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblIpAddress)
+									.addGap(18)
+									.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnFrequency)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnFrequency)
-							.addContainerGap())
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblIpAddress)
+								.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(volLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(volField, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+								.addComponent(volField, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnIpAddress))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 							.addGap(5)

@@ -1,0 +1,3 @@
+[submodule "WindowBuilder/rtlsdrdJavaInterfaces"]
+	path = WindowBuilder/rtlsdrdJavaInterfaces
+	url = git@github.com:AndrewCovarru/rtlsdrdJavaInterfaces.git
