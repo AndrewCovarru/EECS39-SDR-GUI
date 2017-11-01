@@ -2,7 +2,6 @@ package windowBuilder.views;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -16,46 +15,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Window.Type;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class freqKeyPad extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	public String freq;
-	/*
-	 Launch the application.
-	 
-	public static void main(String[] args) {
-		try {
-			freqKeyPad dialog = new freqKeyPad();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	public String freq;
+	
+	public String frequency;
 
 	/**
 	 * Create the dialog.
 	 */	
-	public String returnFreq() {
-		return freq; 
+	public String returnFrequency() {
+		return frequency; 
 	}
 	public freqKeyPad() {
-		setType(Type.POPUP);
 
-		setBounds(100, 100, 275, 238);
+		setBounds(0, 0, 275, 238);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(105, 105, 105));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField freqField = new JFormattedTextField();
-		JLabel lblFrequency = new JLabel("Frequency:");
-		lblFrequency.setForeground(new Color(255, 250, 250));
-		lblFrequency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		JLabel lblfrequency = new JLabel("Frequency:");
+		lblfrequency.setForeground(new Color(255, 250, 250));
+		lblfrequency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		JButton num1 = new JButton("1");
 		num1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,26 +138,21 @@ public class freqKeyPad extends JDialog {
 					freqField.setText(freqField.getText() + ".");
 			}
 		});
-		
-		JComboBox prefixSelect = new JComboBox();
-		prefixSelect.setModel(new DefaultComboBoxModel(new String[] {"Hz", "KHz", "GHz"}));
-		prefixSelect.setMaximumRowCount(3);
-		prefixSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String prefix = prefixSelect.getSelectedItem().toString();
-				
-			}
-		});
-		
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(num7)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(num8)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(num9))
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
 							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addGap(6)
-								.addComponent(lblFrequency)
+								.addComponent(lblfrequency)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(freqField))
 							.addGroup(gl_contentPanel.createSequentialGroup()
@@ -185,30 +163,21 @@ public class freqKeyPad extends JDialog {
 								.addComponent(num3)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(num0)))
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(gl_contentPanel.createSequentialGroup()
-								.addComponent(num7)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(num8)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(num9)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(prefixSelect, 0, 0, Short.MAX_VALUE))
-							.addGroup(gl_contentPanel.createSequentialGroup()
-								.addComponent(num4)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(num5)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(num6)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(numPeriod))))
-					.addContainerGap(75, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(num4)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(num5)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(num6)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(numPeriod)))
+					.addContainerGap(65, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFrequency)
+						.addComponent(lblfrequency)
 						.addComponent(freqField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
@@ -226,8 +195,7 @@ public class freqKeyPad extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(num7)
 						.addComponent(num8)
-						.addComponent(num9)
-						.addComponent(prefixSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(num9))
 					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
@@ -240,7 +208,7 @@ public class freqKeyPad extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						freq = freqField.getText();
+						frequency = freqField.getText();
 						dispose();
 						
 					}

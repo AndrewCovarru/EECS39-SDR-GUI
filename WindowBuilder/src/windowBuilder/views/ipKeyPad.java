@@ -20,18 +20,6 @@ public class ipKeyPad extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	
-	/*
-	public static void main(String[] args) {
-		try {
-			ipKeyPad dialog = new ipKeyPad();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	*/
-	
 	public String ip;
 
 	/**
@@ -42,7 +30,7 @@ public class ipKeyPad extends JDialog {
 	}
 	public ipKeyPad() {
 
-		setBounds(100, 100, 275, 238);
+		setBounds(0, 0, 275, 238);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(105, 105, 105));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

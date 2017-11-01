@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Andrew Covarrubias\Documents\EECS398-SDR-GUI" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="homeScreen - WindowBuilder" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="D:\test.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="2" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\test.jar"/>
+			<item value="C:\Users\Andrew Covarrubias\Desktop\test.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Andrew Covarrubias\Documents\EECS398-SDR-GUI.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
