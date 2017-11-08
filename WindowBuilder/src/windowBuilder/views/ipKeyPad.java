@@ -30,15 +30,15 @@ public class ipKeyPad extends JDialog {
 	}
 	public ipKeyPad() {
 
-		setBounds(0, 0, 275, 238);
+		setBounds(300, 112, 225, 225);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(105, 105, 105));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField ipField = new JFormattedTextField();
-		JLabel lblipuency = new JLabel("IP Address:");
-		lblipuency.setForeground(new Color(255, 250, 250));
-		lblipuency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		JLabel lblip = new JLabel("IP:");
+		lblip.setForeground(new Color(255, 250, 250));
+		lblip.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		JButton num1 = new JButton("1");
 		num1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,21 +138,26 @@ public class ipKeyPad extends JDialog {
 					ipField.setText(ipField.getText() + ".");
 			}
 		});
+		
+		JButton btnBack = new JButton("<");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(ipField.getText() != null) {
+					String pastField = ipField.getText();
+					String newField = pastField.substring(0, pastField.length() - 1);
+					ipField.setText(newField);					
+				}
+			}
+		});
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(num7)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num8)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num9))
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
 							.addGroup(gl_contentPanel.createSequentialGroup()
 								.addGap(6)
-								.addComponent(lblipuency)
+								.addComponent(lblip)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(ipField))
 							.addGroup(gl_contentPanel.createSequentialGroup()
@@ -163,21 +168,30 @@ public class ipKeyPad extends JDialog {
 								.addComponent(num3)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(num0)))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(num4)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num5)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(num6)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(numPeriod)))
-					.addContainerGap(65, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num7)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num8)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num9)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnBack))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num4)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num5)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num6)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(numPeriod, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(73, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblipuency)
+						.addComponent(lblip)
 						.addComponent(ipField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
@@ -195,7 +209,8 @@ public class ipKeyPad extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(num7)
 						.addComponent(num8)
-						.addComponent(num9))
+						.addComponent(num9)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
@@ -213,11 +228,18 @@ public class ipKeyPad extends JDialog {
 						
 					}
 				});
+				
+				JButton btnClear = new JButton("Clear");
+				btnClear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						ipField.setText("");
+					}
+				});
+				buttonPane.add(btnClear);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
 	} 
-	
 }

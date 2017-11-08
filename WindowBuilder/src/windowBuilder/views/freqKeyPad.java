@@ -30,7 +30,7 @@ public class freqKeyPad extends JDialog {
 	}
 	public freqKeyPad() {
 
-		setBounds(200, 112, 400, 225);
+		setBounds(300, 112, 225, 225);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(105, 105, 105));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -228,6 +228,14 @@ public class freqKeyPad extends JDialog {
 						
 					}
 				});
+				
+				JButton btnClear = new JButton("Clear");
+				btnClear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						freqField.setText("");
+					}
+				});
+				buttonPane.add(btnClear);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

@@ -2,32 +2,44 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Mod" key="selection"/>
+		<item value="Squelch" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="squelch"/>
+			<item value="frequency"/>
+			<item value="freqField"/>
+			<item value="freqKeyPad"/>
+			<item value="freq"/>
+			<item value="oversampling"/>
+			<item value="JLabel"/>
 			<item value="mod"/>
 			<item value="execute"/>
 			<item value="ip"/>
-			<item value="squelch"/>
 			<item value="volume"/>
 			<item value="action"/>
 			<item value="gain"/>
 			<item value="Tahoma"/>
 			<item value="SampleRate"/>
-			<item value="OK"/>
-			<item value="JDialog"/>
-			<item value="JFrame"/>
-			<item value="freq"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Segoe UI Semibold"/>
-			<item value="freq"/>
-			<item value="JDialog"/>
-			<item value="JFrame"/>
-			<item value="ip"/>
+			<item value="squelchDelay"/>
+			<item value="squelchDelayField"/>
+			<item value="squelchdelayKeyPad"/>
+			<item value="sampleRateField"/>
+			<item value="sampleRate"/>
+			<item value="samplerateKeyPad"/>
+			<item value="scannableField"/>
+			<item value="scannableFrequency"/>
+			<item value="scannablefrequencyKeyPad"/>
+			<item value="samplerateField"/>
+			<item value="ppmField"/>
+			<item value="ppm"/>
+			<item value="ppmError"/>
+			<item value="ppmKeyPad"/>
+			<item value="resampleField"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
