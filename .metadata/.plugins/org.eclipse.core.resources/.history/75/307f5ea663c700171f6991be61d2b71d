@@ -247,6 +247,7 @@ public class homeScreen extends JFrame {
 		});
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
+		ipDisplay.setText("127.0.0.1");
 		
 		JRadioButton rdbtnEDGE = new JRadioButton("Edge");
 		
@@ -613,16 +614,6 @@ public class homeScreen extends JFrame {
 		delayDisplay.setEditable(false);
 		lblSquelchDelay.setLabelFor(delayDisplay);
 		
-		JButton button = new JButton("Stop");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				tcpClient.sendToServer("STOP");
-				
-				
-			}
-		});
-		button.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -632,7 +623,7 @@ public class homeScreen extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addContainerGap()
-									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
 									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -663,8 +654,7 @@ public class homeScreen extends JFrame {
 									.addGap(7)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 										.addComponent(rdbtnDIRECT)
-										.addComponent(rdbtnOFFSET)))
-								.addComponent(button, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(rdbtnOFFSET)))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
@@ -695,6 +685,7 @@ public class homeScreen extends JFrame {
 								.addComponent(lblFirsize)
 								.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 								.addComponent(firDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnExecute)
 						.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -707,8 +698,7 @@ public class homeScreen extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
 								.addComponent(delayDisplay, 79, 79, 79)))
-						.addComponent(sampleDisplay, 67, 67, 67)
-						.addComponent(btnExecute))
+						.addComponent(sampleDisplay, 67, 67, 67))
 					.addGap(51))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -788,21 +778,19 @@ public class homeScreen extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(15)
-							.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(squLabel)
-								.addComponent(squField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnDEEMP)
-							.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap())))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(squLabel)
+										.addComponent(squField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(rdbtnDEEMP))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

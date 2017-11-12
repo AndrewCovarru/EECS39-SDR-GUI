@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Squelch" key="selection"/>
+		<item value="ipDisplay" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ipdisplay"/>
+			<item value="stop"/>
+			<item value="ip"/>
+			<item value="tcpClientThread"/>
 			<item value="squelch"/>
 			<item value="frequency"/>
 			<item value="freqField"/>
@@ -17,12 +21,8 @@
 			<item value="JLabel"/>
 			<item value="mod"/>
 			<item value="execute"/>
-			<item value="ip"/>
 			<item value="volume"/>
 			<item value="action"/>
-			<item value="gain"/>
-			<item value="Tahoma"/>
-			<item value="SampleRate"/>
 		</list>
 		<list key="replacehistory">
 			<item value="squelchDelay"/>

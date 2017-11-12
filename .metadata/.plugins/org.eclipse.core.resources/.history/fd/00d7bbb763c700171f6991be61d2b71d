@@ -247,6 +247,7 @@ public class homeScreen extends JFrame {
 		});
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
+		ipDisplay.setText("127.0.0.1");
 		
 		JRadioButton rdbtnEDGE = new JRadioButton("Edge");
 		
