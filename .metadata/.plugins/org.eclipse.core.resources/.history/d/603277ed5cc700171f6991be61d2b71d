@@ -56,11 +56,8 @@ public class homeScreen extends JFrame {
 	
 	//Creates String for execute method
 	private String atanMath;
-	private String enableOptionEDGE;
-	private String enableOptionDC;
-	private String enableOptionDEEMP;
-	private String enableOptionDIRECT;
-	private String enableOptionOFFSET;
+	private String deviceIndex;
+	private String enableOption;
 	private String firSize;
 	private String frequency;
 	private String modulationMode;
@@ -249,16 +246,6 @@ public class homeScreen extends JFrame {
 		ipDisplay.setEditable(false);
 		ipDisplay.setText("127.0.0.1");
 		
-		JRadioButton rdbtnEDGE = new JRadioButton("Edge");
-		
-		JRadioButton rdbtnDC = new JRadioButton("DC");
-		
-		JRadioButton rdbtnDEEMP = new JRadioButton("DEEMP");
-		
-		JRadioButton rdbtnDIRECT = new JRadioButton("DIRECT");
-		
-		JRadioButton rdbtnOFFSET = new JRadioButton("OFFSET");
-		
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
@@ -266,17 +253,10 @@ public class homeScreen extends JFrame {
 				System.out.println("Atan Math: " + atanMath);
 				Parameters.ATAN_MATH.append(atanMath);
 				
-				//Checks each of the radio buttons
-				if(rdbtnEDGE.isSelected())
-					Parameters.ENABLE_OPTION.append("edge");
-				if(rdbtnDC.isSelected())
-					Parameters.ENABLE_OPTION.append("dc");
-				if(rdbtnDEEMP.isSelected())
-					Parameters.ENABLE_OPTION.append("deemp");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("direct");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("offset");
+				//System.out.println("Device Index: " + deviceIndex);
+				//Parameters.DEVICE_INDEX.append(deviceIndex);
+				System.out.println("Enable Option:" + enableOption);
+				Parameters.ENABLE_OPTION.append(enableOption);
 				
 				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
@@ -614,66 +594,60 @@ public class homeScreen extends JFrame {
 		delayDisplay.setEditable(false);
 		lblSquelchDelay.setLabelFor(delayDisplay);
 		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblOversampling)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblIPA)
-										.addComponent(lblScannableFrequency))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(scannableDisplay, 101, 101, 101)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(ipDisplay, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-											.addComponent(resampleDisplay, Alignment.TRAILING)
-											.addComponent(oversamplingDisplay, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblEnableOption)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(rdbtnEDGE)
-												.addComponent(rdbtnDC)
-												.addComponent(rdbtnDEEMP))
-											.addGap(4)))
-									.addGap(7)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(rdbtnDIRECT)
-										.addComponent(rdbtnOFFSET)))))
-						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(squField, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+						.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(volSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(volLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(volField, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-									.addGap(180))
+									.addContainerGap()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(volLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(volField, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+											.addGap(180))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+											.addGap(250)))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-									.addGap(250))))
-						.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblEnableOption)
+										.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblOversampling)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+												.addComponent(lblIPA)
+												.addComponent(lblScannableFrequency))
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(scannableDisplay, 101, 101, 101)
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+													.addComponent(ipDisplay, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+													.addComponent(resampleDisplay, Alignment.TRAILING)
+													.addComponent(oversamplingDisplay, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(23)
+									.addComponent(rdbtnNewRadioButton)))))
 					.addGap(32)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
@@ -759,38 +733,27 @@ public class homeScreen extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 								.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblEnableOption)
-										.addComponent(lblSquelchDelay)
-										.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-									.addGap(10))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-									.addComponent(rdbtnEDGE)
-									.addComponent(rdbtnDIRECT)))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(rdbtnDC)
-								.addComponent(rdbtnOFFSET)))
+									.addComponent(lblEnableOption)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(rdbtnNewRadioButton))
+								.addComponent(lblSquelchDelay)))
 						.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(15)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(squLabel)
-										.addComponent(squField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnDEEMP))))
+							.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(squLabel)
+								.addComponent(squField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(44))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

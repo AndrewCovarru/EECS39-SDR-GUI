@@ -268,7 +268,7 @@ public class homeScreen extends JFrame {
 				
 				//Checks each of the radio buttons
 				if(rdbtnEDGE.isSelected())
-					Parameters.ENABLE_OPTION.append("edge");
+					System.out.println("Hello World");//Parameters.ENABLE_OPTION.append("edge");
 				if(rdbtnDC.isSelected())
 					Parameters.ENABLE_OPTION.append("dc");
 				if(rdbtnDEEMP.isSelected())

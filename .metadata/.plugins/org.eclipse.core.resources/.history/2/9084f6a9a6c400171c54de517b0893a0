@@ -30,7 +30,7 @@ public class freqKeyPad extends JDialog {
 	}
 	public freqKeyPad() {
 
-		setBounds(250, 100, 300, 300);
+		setBounds(250, 112, 300, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(105, 105, 105));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -168,28 +168,24 @@ public class freqKeyPad extends JDialog {
 								.addComponent(num3)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(num0)))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(num7, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(num9, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addComponent(num4)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(num5)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(num6)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(numPeriod, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-					.addContainerGap(98, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
-					.addGap(128)
-					.addComponent(num8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num7)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num8)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num9)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnBack))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(num4)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num5)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(num6)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(numPeriod, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(73, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -209,14 +205,13 @@ public class freqKeyPad extends JDialog {
 						.addComponent(numPeriod, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(num5)
 						.addComponent(num6))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(num9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(num7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(37)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(num8, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-						.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)))
+						.addComponent(num7)
+						.addComponent(num8)
+						.addComponent(num9)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{

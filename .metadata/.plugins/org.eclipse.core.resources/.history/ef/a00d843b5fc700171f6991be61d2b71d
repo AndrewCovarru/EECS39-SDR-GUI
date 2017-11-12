@@ -249,16 +249,6 @@ public class homeScreen extends JFrame {
 		ipDisplay.setEditable(false);
 		ipDisplay.setText("127.0.0.1");
 		
-		JRadioButton rdbtnEDGE = new JRadioButton("Edge");
-		
-		JRadioButton rdbtnDC = new JRadioButton("DC");
-		
-		JRadioButton rdbtnDEEMP = new JRadioButton("DEEMP");
-		
-		JRadioButton rdbtnDIRECT = new JRadioButton("DIRECT");
-		
-		JRadioButton rdbtnOFFSET = new JRadioButton("OFFSET");
-		
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
@@ -266,17 +256,10 @@ public class homeScreen extends JFrame {
 				System.out.println("Atan Math: " + atanMath);
 				Parameters.ATAN_MATH.append(atanMath);
 				
-				//Checks each of the radio buttons
-				if(rdbtnEDGE.isSelected())
-					Parameters.ENABLE_OPTION.append("edge");
-				if(rdbtnDC.isSelected())
-					Parameters.ENABLE_OPTION.append("dc");
-				if(rdbtnDEEMP.isSelected())
-					Parameters.ENABLE_OPTION.append("deemp");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("direct");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("offset");
+				//System.out.println("Device Index: " + deviceIndex);
+				//Parameters.DEVICE_INDEX.append(deviceIndex);
+				System.out.println("Enable Option:" + enableOption);
+				Parameters.ENABLE_OPTION.append(enableOption);
 				
 				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
@@ -614,19 +597,28 @@ public class homeScreen extends JFrame {
 		delayDisplay.setEditable(false);
 		lblSquelchDelay.setLabelFor(delayDisplay);
 		
+		JRadioButton rdbtnEdge = new JRadioButton("Edge");
+		
+		
+		JRadioButton rdbtnDc = new JRadioButton("DC");
+		
+		JRadioButton rdbtnDeemp = new JRadioButton("DEEMP");
+		
+		JRadioButton rdbtnDirect = new JRadioButton("DIRECT");
+		
+		JRadioButton rdbtnOffset = new JRadioButton("OFFSET");
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(volSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+								.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
@@ -647,14 +639,14 @@ public class homeScreen extends JFrame {
 										.addComponent(lblEnableOption)
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(rdbtnEDGE)
-												.addComponent(rdbtnDC)
-												.addComponent(rdbtnDEEMP))
+												.addComponent(rdbtnEdge)
+												.addComponent(rdbtnDc)
+												.addComponent(rdbtnDeemp))
 											.addGap(4)))
 									.addGap(7)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(rdbtnDIRECT)
-										.addComponent(rdbtnOFFSET)))))
+										.addComponent(rdbtnDirect)
+										.addComponent(rdbtnOffset)))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
@@ -764,16 +756,17 @@ public class homeScreen extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblEnableOption)
-										.addComponent(lblSquelchDelay)
-										.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lblSquelchDelay))
 									.addGap(10))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-									.addComponent(rdbtnEDGE)
-									.addComponent(rdbtnDIRECT)))
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(rdbtnEdge)
+										.addComponent(rdbtnDirect))
+									.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(rdbtnDC)
-								.addComponent(rdbtnOFFSET)))
+								.addComponent(rdbtnDc)
+								.addComponent(rdbtnOffset)))
 						.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -790,7 +783,7 @@ public class homeScreen extends JFrame {
 									.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnDEEMP))))
+							.addComponent(rdbtnDeemp))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
