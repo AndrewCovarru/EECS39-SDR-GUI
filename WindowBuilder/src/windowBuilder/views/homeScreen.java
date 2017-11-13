@@ -56,11 +56,6 @@ public class homeScreen extends JFrame {
 	
 	//Creates String for execute method
 	private String atanMath;
-	private String enableOptionEDGE;
-	private String enableOptionDC;
-	private String enableOptionDEEMP;
-	private String enableOptionDIRECT;
-	private String enableOptionOFFSET;
 	private String firSize;
 	private String frequency;
 	private String modulationMode;
@@ -103,12 +98,12 @@ public class homeScreen extends JFrame {
 		freqDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				freqKeyPad keypad = new freqKeyPad();
-				keypad.setVisible(true);
+				keyPad freqKeyPad = new keyPad("Frequency: ");
+				freqKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 freqKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                freqDisplay.setText(keypad.returnFrequency());
+			                freqDisplay.setText(freqKeyPad.returnField());
 			               frequency = freqDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -212,14 +207,14 @@ public class homeScreen extends JFrame {
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ipKeyPad keypad = new ipKeyPad();
-				keypad.setVisible(true);
+				keyPad ipKeyPad = new keyPad("IP Address:");
+				ipKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 ipKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                ipDisplay.setText(keypad.returnip());
+			                ipDisplay.setText(ipKeyPad.returnField());
 			            	 try {
-									tcpClient = new TcpClient(keypad.returnip(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+									tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
 					                tcpClientThread = new Thread(tcpClient);
 					                tcpClientThread.start();
 								} catch (UnknownHostException e) {
@@ -396,7 +391,7 @@ public class homeScreen extends JFrame {
 		lblOversampling.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		
-		JLabel lblPpmError = new JLabel("Ppm Error: ");
+		JLabel lblPpmError = new JLabel("PPM Error: ");
 		lblPpmError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		lblPpmError.setForeground(Color.WHITE);
 		lblPpmError.setLabelFor(ipDisplay);
@@ -407,12 +402,12 @@ public class homeScreen extends JFrame {
 		oversamplingDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				oversamplingKeyPad keypad = new oversamplingKeyPad();
-				keypad.setVisible(true);
+				keyPad oversamplingKeyPad = new keyPad("Oversampling:");
+				oversamplingKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 oversamplingKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                oversamplingDisplay.setText(keypad.returnOverSampling());
+			                oversamplingDisplay.setText(oversamplingKeyPad.returnField());
 			               overSampling = oversamplingDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -439,12 +434,12 @@ public class homeScreen extends JFrame {
 		ppmDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ppmKeyPad keypad = new ppmKeyPad();
-				keypad.setVisible(true);
+				keyPad ppmKeyPad = new keyPad("PPM Error: ");
+				ppmKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 ppmKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                ppmDisplay.setText(keypad.returnPPMError());
+			                ppmDisplay.setText(ppmKeyPad.returnField());
 			               ppmError = ppmDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -476,12 +471,12 @@ public class homeScreen extends JFrame {
 		resampleDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				resampleKeyPad keypad = new resampleKeyPad();
-				keypad.setVisible(true);
+				keyPad resampleKeyPad = new keyPad("Resample Rate:");
+				resampleKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 resampleKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                resampleDisplay.setText(keypad.returnResampleRate());
+			                resampleDisplay.setText(resampleKeyPad.returnField());
 			               resampleRate = resampleDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -513,12 +508,12 @@ public class homeScreen extends JFrame {
 		sampleDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				samplerateKeyPad keypad = new samplerateKeyPad();
-				keypad.setVisible(true);
+				keyPad samplerateKeyPad = new keyPad("Sample Rate: ");
+				samplerateKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 samplerateKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                sampleDisplay.setText(keypad.returnSampleRate());
+			                sampleDisplay.setText(samplerateKeyPad.returnField());
 			               sampleRate = sampleDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -549,12 +544,12 @@ public class homeScreen extends JFrame {
 		scannableDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				scannablefrequencyKeyPad keypad = new scannablefrequencyKeyPad();
-				keypad.setVisible(true);
+				keyPad scannableKeyPad = new keyPad("Scannable: ");
+				scannableKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 scannableKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			                scannableDisplay.setText(keypad.returnScannableFrequency());
+			                scannableDisplay.setText(scannableKeyPad.returnField());
 			               scannableFrequency = scannableDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -586,12 +581,12 @@ public class homeScreen extends JFrame {
 		delayDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				squelchdelayKeyPad keypad = new squelchdelayKeyPad();
-				keypad.setVisible(true);
+				keyPad delayKeyPad = new keyPad("Squelch Delay: ");
+				delayKeyPad.setVisible(true);
 				
-				 keypad.addWindowListener(new WindowListener() {
+				 delayKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
-			            		delayDisplay.setText(keypad.returnSquelchDelay());
+			            		delayDisplay.setText(delayKeyPad.returnField());
 			               squelchDelay = delayDisplay.getText();
 			            }
 			            public void windowActivated(WindowEvent arg0) {
