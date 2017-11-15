@@ -47,20 +47,19 @@ public enum Parameters {
     
     public synchronized void updateField(Class homeScreen, final String newVal) {
     	if(uiElementSpecificType.equals(javax.swing.JFormattedTextField.class)) {
-    		((javax.swing.JFormattedTextField) uiElement).setText(newVal);
+    		
     	}
     	
     	if(uiElementSpecificType.equals(javax.swing.JRadioButton.class)) {
-    		//((javax.swing.JRadioButton) uiElement).setSelected(newVal);
     		
     	}
     	
     	if(uiElementSpecificType.equals(javax.swing.JComboBox.class)){
-    		((javax.swing.JComboBox) uiElement).setSelectedItem(newVal);
+    		
     	}
     	
     	if(uiElementSpecificType.equals(javax.swing.JSlider.class)) {
-    		((javax.swing.JSlider) uiElement).setValue(Integer.parseInt(newVal));
+    		
     	}
     	
     }

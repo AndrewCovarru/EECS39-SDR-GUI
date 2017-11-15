@@ -68,10 +68,6 @@ public class homeScreen extends JFrame {
 	private String squelch;
 	private String gain;
 	private String volume;
-	
-	//Associate Parameters with UI Members
-	//Parameters.FREQUENCY.setUIMembers(freqDisplay, freqDisplay.getClass());
-	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -96,7 +92,6 @@ public class homeScreen extends JFrame {
 		contentPane.setBackground(new Color(105, 105, 105));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
 		
 		JFormattedTextField freqDisplay = 	new JFormattedTextField();
 		freqDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 60));
@@ -133,7 +128,6 @@ public class homeScreen extends JFrame {
 		freqDisplay.setForeground(new Color(255, 250, 250));
 		freqDisplay.setBackground(new Color(0, 0, 0));
 		freqDisplay.setText("Frequency");
-		
 		
 		JFormattedTextField gainField = new JFormattedTextField();
 		gainField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -614,44 +608,15 @@ public class homeScreen extends JFrame {
 		delayDisplay.setEditable(false);
 		lblSquelchDelay.setLabelFor(delayDisplay);
 		
-		JButton stopButton = new JButton("Stop");
-		stopButton.addActionListener(new ActionListener() {
+		JButton button = new JButton("Stop");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tcpClient.sendToServer("STOP");
 				
 				
 			}
 		});
-		
-		stopButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		
-		
-		//JComboBox
-		Parameters.ATAN_MATH.setUIMembers(atanMathDrop, atanMathDrop.getClass());
-		Parameters.FIR_SIZE.setUIMembers(firDrop, firDrop.getClass());
-		Parameters.MODULATION_MODE.setUIMembers(modMode, modMode.getClass());
-		
-		//JSliders
-		Parameters.VOLUME.setUIMembers(volSlider, volSlider.getClass());
-		Parameters.TUNER_GAIN.setUIMembers(gainSlider, gainSlider.getClass());
-		Parameters.SQUELCH_LEVEL.setUIMembers(squSlider, squSlider.getClass());
-		
-		//JRadioButton
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnOFFSET, rdbtnOFFSET.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDC, rdbtnDC.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDIRECT, rdbtnDIRECT.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDEEMP, rdbtnDEEMP.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnEDGE, rdbtnEDGE.getClass());
-		
-		//JDisplay
-		Parameters.ENABLE_OPTION.setUIMembers(freqDisplay, freqDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(ipDisplay, ipDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(oversamplingDisplay, oversamplingDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(resampleDisplay, resampleDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(scannableDisplay, scannableDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(ppmDisplay, ppmDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(sampleDisplay, sampleDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(delayDisplay, delayDisplay.getClass());
+		button.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -694,7 +659,7 @@ public class homeScreen extends JFrame {
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 										.addComponent(rdbtnDIRECT)
 										.addComponent(rdbtnOFFSET)))
-								.addComponent(stopButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(button, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
@@ -833,7 +798,7 @@ public class homeScreen extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-								.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+								.addComponent(button, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())))
 		);
 		contentPane.setLayout(gl_contentPane);
