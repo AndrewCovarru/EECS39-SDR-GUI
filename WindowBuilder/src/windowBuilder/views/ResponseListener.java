@@ -1,0 +1,106 @@
+package windowBuilder.views;
+
+
+import javax.swing.JOptionPane;
+
+import com.bensherman.rtlsdrdjava.tcpcli.Message;
+import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
+
+
+/**
+ * Created by jamespatrizi on 11/1/17.
+ */
+
+public class ResponseListener implements Runnable {
+    private TcpClient tcpClient;
+    private homeScreen controllerMain;
+
+    public  ResponseListener(final TcpClient tcpClient, final homeScreen mainActivity) {
+        this.tcpClient = tcpClient;
+        this.controllerMain = mainActivity;
+    }
+
+    @Override
+    public void run() {
+
+        while(true) {
+            try {
+                final Message msg = tcpClient.getCompletedMessage();
+                if (msg.getResponseMsgType() == Message.ResponseType.ERROR) {
+                    System.out.println("ERROR RECEIVED!:\n" + msg.toString());
+                    JOptionPane.showMessageDialog(null, msg.toString(), "Invalid parameter specified", JOptionPane.ERROR_MESSAGE);
+                handleErrorMessage(msg);
+                } else if (msg.getResponseMsgType() == Message.ResponseType.UPDATE_AVAILABLE) {
+//                    Log.d(TAG, "UPDATE AVAILABLE RECEIVED!!!!!: \n" + msg.toString());
+                    System.out.println("UpdateAvailableReceived!:\n" + msg.toString());
+                    tcpClient.sendToServer("CMDS_IN_USE");
+                }
+                else if (msg.getResponseMsgType() == Message.ResponseType.OK)
+                {
+                    if (msg.getOutboundMsg().equals("CMDS_IN_USE"))
+                    {
+                        JOptionPane.showMessageDialog(null, "CMDS_IN_USE RESPONSE:\n" + msg.getResponseMsg());
+                        parseCmdsInUseResponse(msg.getResponseMsg());
+                    }
+                }
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    private void handleErrorMessage(Message msg)
+    {
+        int equalsIndex = msg.getOutboundMsg().indexOf("=");
+        String command = msg.getOutboundMsg().substring(0, equalsIndex);
+        String value = msg.getOutboundMsg().substring(equalsIndex + 1);
+
+        for (Parameters param : Parameters.values())
+        {
+            if (param.getFunction().equals(command)) {
+                param.updateField(controllerMain, "INVALID");
+            }
+        }
+    }
+
+    private void parseCmdsInUseResponse(String response)
+    {
+        // Each instance doesn't include the newline character
+        String[] responseLines = response.split("\n");
+
+        // Reset all enable option strings
+        ((EnableOptionUiMatcher) Parameters.ENABLE_OPTION.getUiElement()).uncheckAll();
+        
+        Parameters.ENABLE_OPTION.resetValues();
+
+        for (String line : responseLines)
+        {
+            // Skip special svr messages
+            if (line.startsWith("~"))
+            {
+                continue;
+            }
+            else
+            {
+                int equalsIndex = line.indexOf("=");
+                String command = line.substring(0, equalsIndex);
+                String value = line.substring(equalsIndex + 1);
+                for (Parameters param : Parameters.values())
+                {
+                    if (param.getFunction().equals(command)) {
+                        System.out.println("ASSOCIATED W/ PARAMETER: " + param.getFunction());
+
+                        if (!param.equals(Parameters.ENABLE_OPTION))
+                        {
+                            param.resetValues();
+                        }
+
+                        param.append(value);
+
+                        param.updateField(controllerMain, value);
+                    }
+                }
+            }
+        }
+    }
+}

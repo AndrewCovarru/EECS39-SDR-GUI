@@ -37,6 +37,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 import javax.swing.JEditorPane;
 import java.awt.event.MouseAdapter;
@@ -53,6 +54,10 @@ public class homeScreen extends JFrame {
 	 */
 	private TcpClient tcpClient;
 	private Thread tcpClientThread; 
+	private ResponseListener listener;
+	private Thread listenerThread;
+	private final EnableOptionUiMatcher enableOptionUiMatcher = new EnableOptionUiMatcher();
+
 	
 	//Creates String for execute method
 	private String atanMath;
@@ -69,8 +74,15 @@ public class homeScreen extends JFrame {
 	private String gain;
 	private String volume;
 	
+	private static homeScreen instance;
+	
+	public static homeScreen getInstance()
+	{
+	    return instance;
+	}
+	
 	//Associate Parameters with UI Members
-	//Parameters.FREQUENCY.setUIMembers(freqDisplay, freqDisplay.getClass());
+	//Parameters.FREQUENCY.setUiMembers(freqDisplay, freqDisplay.getClass());
 	
 
 	public static void main(String[] args) {
@@ -90,6 +102,7 @@ public class homeScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public homeScreen() {
+	        instance = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 450);
 		contentPane = new JPanel();
@@ -133,26 +146,31 @@ public class homeScreen extends JFrame {
 		freqDisplay.setForeground(new Color(255, 250, 250));
 		freqDisplay.setBackground(new Color(0, 0, 0));
 		freqDisplay.setText("Frequency");
+		Parameters.FREQUENCY.setUiMembers(freqDisplay, freqDisplay.getClass());
 		
 		
 		JFormattedTextField gainField = new JFormattedTextField();
 		gainField.setHorizontalAlignment(SwingConstants.CENTER);
 		gainField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 35));
 		gainField.setEditable(false);
+		Parameters.TUNER_GAIN.setUiMembers(gainField, gainField.getClass());
 		
 		JFormattedTextField volField = new JFormattedTextField();
 		volField.setHorizontalAlignment(SwingConstants.CENTER);
 		volField.setFont(volField.getFont().deriveFont(volField.getFont().getSize() + 24f));
 		volField.setEditable(false);
+		Parameters.VOLUME.setUiMembers(volField, volField.getClass());
 		
 		JFormattedTextField squField = new JFormattedTextField();
 		squField.setHorizontalAlignment(SwingConstants.CENTER);
 		squField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 35));
 		squField.setEditable(false);
+		Parameters.SQUELCH_LEVEL.setUiMembers(squField, squField.getClass());
 		
 		JSlider gainSlider = new JSlider();
 		gainField.setText("50");
 		gain = gainField.getText();
+		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				double percentage = (double)gainSlider.getValue()/100;
@@ -169,6 +187,7 @@ public class homeScreen extends JFrame {
 		volSlider.setValue(100);
 		volField.setText("100");
 		volume = volField.getText();
+		Parameters.VOLUME.setUiMembers(volField, volField.getClass());
 		volSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				volField.setText("" + volSlider.getValue());
@@ -220,9 +239,12 @@ public class homeScreen extends JFrame {
 			            public void windowClosed(WindowEvent arg0) {
 			                ipDisplay.setText(ipKeyPad.returnField());
 			            	 try {
-									tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+			            	                tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
 					                tcpClientThread = new Thread(tcpClient);
 					                tcpClientThread.start();
+					                listener = new ResponseListener(tcpClient, instance);
+					                listenerThread = new Thread(listener);
+					                listenerThread.start();
 								} catch (UnknownHostException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -249,16 +271,23 @@ public class homeScreen extends JFrame {
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
 		
-		JRadioButton rdbtnEDGE = new JRadioButton("Edge");
+		JRadioButton rdbtnEDGE = new JRadioButton("edge");
+		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
-		JRadioButton rdbtnDC = new JRadioButton("DC");
+		JRadioButton rdbtnDC = new JRadioButton("dc");
+	        enableOptionUiMatcher.add("dc", rdbtnDC);
 		
-		JRadioButton rdbtnDEEMP = new JRadioButton("DEEMP");
+		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
+                enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
 		
-		JRadioButton rdbtnDIRECT = new JRadioButton("DIRECT");
+		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
+                enableOptionUiMatcher.add("direct", rdbtnDIRECT);
 		
-		JRadioButton rdbtnOFFSET = new JRadioButton("OFFSET");
+		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
+                enableOptionUiMatcher.add("offset", rdbtnOFFSET);
 		
+                Parameters.ENABLE_OPTION.setUiMembers(enableOptionUiMatcher, enableOptionUiMatcher.getClass());
+                
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
@@ -266,17 +295,17 @@ public class homeScreen extends JFrame {
 				System.out.println("Atan Math: " + atanMath);
 				Parameters.ATAN_MATH.append(atanMath);
 				
-				//Checks each of the radio buttons
-				if(rdbtnEDGE.isSelected())
-					Parameters.ENABLE_OPTION.append("edge");
-				if(rdbtnDC.isSelected())
-					Parameters.ENABLE_OPTION.append("dc");
-				if(rdbtnDEEMP.isSelected())
-					Parameters.ENABLE_OPTION.append("deemp");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("direct");
-				if(rdbtnDIRECT.isSelected())
-					Parameters.ENABLE_OPTION.append("offset");
+//				//Checks each of the radio buttons
+//				if(rdbtnEDGE.isSelected())
+//					Parameters.ENABLE_OPTION.append("edge");
+//				if(rdbtnDC.isSelected())
+//					Parameters.ENABLE_OPTION.append("dc");
+//				if(rdbtnDEEMP.isSelected())
+//					Parameters.ENABLE_OPTION.append("deemp");
+//				if(rdbtnDIRECT.isSelected())
+//					Parameters.ENABLE_OPTION.append("direct");
+//				if(rdbtnDIRECT.isSelected())
+//					Parameters.ENABLE_OPTION.append("offset");
 				
 				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
@@ -625,33 +654,16 @@ public class homeScreen extends JFrame {
 		
 		stopButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		
-		
-		//JComboBox
-		Parameters.ATAN_MATH.setUIMembers(atanMathDrop, atanMathDrop.getClass());
-		Parameters.FIR_SIZE.setUIMembers(firDrop, firDrop.getClass());
-		Parameters.MODULATION_MODE.setUIMembers(modMode, modMode.getClass());
-		
-		//JSliders
-		Parameters.VOLUME.setUIMembers(volSlider, volSlider.getClass());
-		Parameters.TUNER_GAIN.setUIMembers(gainSlider, gainSlider.getClass());
-		Parameters.SQUELCH_LEVEL.setUIMembers(squSlider, squSlider.getClass());
-		
-		//JRadioButton
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnOFFSET, rdbtnOFFSET.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDC, rdbtnDC.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDIRECT, rdbtnDIRECT.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnDEEMP, rdbtnDEEMP.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(rdbtnEDGE, rdbtnEDGE.getClass());
-		
-		//JDisplay
-		Parameters.ENABLE_OPTION.setUIMembers(freqDisplay, freqDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(ipDisplay, ipDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(oversamplingDisplay, oversamplingDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(resampleDisplay, resampleDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(scannableDisplay, scannableDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(ppmDisplay, ppmDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(sampleDisplay, sampleDisplay.getClass());
-		Parameters.ENABLE_OPTION.setUIMembers(delayDisplay, delayDisplay.getClass());
+//		
+//		//JComboBox
+//		Parameters.ATAN_MATH.setUiMembers(atanMathDrop, atanMathDrop.getClass());
+//		Parameters.FIR_SIZE.setUiMembers(firDrop, firDrop.getClass());
+//		Parameters.MODULATION_MODE.setUiMembers(modMode, modMode.getClass());
+//		
+//		//JSliders
+//		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
+//		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
+//		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
