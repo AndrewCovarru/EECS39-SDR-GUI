@@ -42,6 +42,7 @@ import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 import javax.swing.JEditorPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 //import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
 public class homeScreen extends JFrame {
@@ -110,9 +111,20 @@ public class homeScreen extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+		/*
+		 * All of the JFormattedTextFields used throughout
+		 */
 		
+		//Frequency
 		JFormattedTextField freqDisplay = 	new JFormattedTextField();
 		freqDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 60));
+		freqDisplay.setEditable(false);
+		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+		freqDisplay.setForeground(new Color(255, 250, 250));
+		freqDisplay.setBackground(new Color(0, 0, 0));
+		freqDisplay.setText("91100000");
+		frequency = freqDisplay.getText();
+		Parameters.FREQUENCY.setUiMembers(freqDisplay, freqDisplay.getClass());
 		freqDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -141,13 +153,241 @@ public class homeScreen extends JFrame {
 				
 			}
 		});
-		freqDisplay.setEditable(false);
-		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-		freqDisplay.setForeground(new Color(255, 250, 250));
-		freqDisplay.setBackground(new Color(0, 0, 0));
-		freqDisplay.setText("Frequency");
-		Parameters.FREQUENCY.setUiMembers(freqDisplay, freqDisplay.getClass());
 		
+		//IP Address
+		JFormattedTextField ipDisplay = new JFormattedTextField();
+		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		ipDisplay.setEditable(false);
+		ipDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				keyPad ipKeyPad = new keyPad("IP Address:");
+				ipKeyPad.setVisible(true);
+				
+				 ipKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                ipDisplay.setText(ipKeyPad.returnField());
+			            	 try {
+			            	                tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+					                tcpClientThread = new Thread(tcpClient);
+					                tcpClientThread.start();
+					                listener = new ResponseListener(tcpClient, instance);
+					                listenerThread = new Thread(listener);
+					                listenerThread.start();
+								} catch (UnknownHostException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+			}
+		});
+		
+		//PPM Error
+		JFormattedTextField ppmDisplay = new JFormattedTextField();
+		ppmDisplay.setEditable(false);
+		Parameters.PPM_ERROR.setUiMembers(ppmDisplay, ppmDisplay.getClass());
+		ppmDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				keyPad ppmKeyPad = new keyPad("PPM Error: ");
+				ppmKeyPad.setVisible(true);
+				
+				 ppmKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                ppmDisplay.setText(ppmKeyPad.returnField());
+			               ppmError = ppmDisplay.getText();
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+				
+			}
+		});
+		
+		//Resample Rate 
+		JFormattedTextField resampleDisplay = new JFormattedTextField();
+		resampleDisplay.setEditable(false);
+		Parameters.RESAMPLE_RATE.setUiMembers(resampleDisplay, resampleDisplay.getClass());
+		resampleDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				keyPad resampleKeyPad = new keyPad("Resample Rate:");
+				resampleKeyPad.setVisible(true);
+				
+				 resampleKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                resampleDisplay.setText(resampleKeyPad.returnField());
+			               resampleRate = resampleDisplay.getText();
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+				
+			}
+		});
+		
+		//Sample Rate
+		JFormattedTextField sampleDisplay = new JFormattedTextField();
+		sampleDisplay.setEditable(false);
+		Parameters.SAMPLE_RATE.setUiMembers(sampleDisplay, sampleDisplay.getClass());
+		sampleDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				keyPad samplerateKeyPad = new keyPad("Sample Rate: ");
+				samplerateKeyPad.setVisible(true);
+				
+				 samplerateKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                sampleDisplay.setText(samplerateKeyPad.returnField());
+			               sampleRate = sampleDisplay.getText();
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+			}
+		});
+		
+		//Scannable Display
+		JFormattedTextField scannableDisplay = new JFormattedTextField();
+		scannableDisplay.setEditable(false);
+		Parameters.SCANNABLE_FREQUENCY.setUiMembers(scannableDisplay, scannableDisplay.getClass());
+		scannableDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				keyPad scannableKeyPad = new keyPad("Scannable: ");
+				scannableKeyPad.setVisible(true);
+				
+				 scannableKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			                scannableDisplay.setText(scannableKeyPad.returnField());
+			               scannableFrequency = scannableDisplay.getText();
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+			}
+		});		
+		
+		//Squelch Delay
+		JFormattedTextField delayDisplay = new JFormattedTextField();
+		delayDisplay.setEditable(false);
+		Parameters.SQUELCH_DELAY.setUiMembers(delayDisplay, delayDisplay.getClass());
+		delayDisplay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				keyPad delayKeyPad = new keyPad("Squelch Delay: ");
+				delayKeyPad.setVisible(true);
+				
+				 delayKeyPad.addWindowListener(new WindowListener() {
+			            public void windowClosed(WindowEvent arg0) {
+			            		delayDisplay.setText(delayKeyPad.returnField());
+			               squelchDelay = delayDisplay.getText();
+			            }
+			            public void windowActivated(WindowEvent arg0) {
+			            }
+			            public void windowClosing(WindowEvent arg0) {
+			            }
+			            public void windowDeactivated(WindowEvent arg0) {
+			            }
+			            public void windowDeiconified(WindowEvent arg0) {
+			            }
+			            public void windowIconified(WindowEvent arg0) {
+			            }
+			            public void windowOpened(WindowEvent arg0) {
+			            }
+			        });
+				
+			}
+		});
+		
+		//Oversampling Rate
+				JFormattedTextField oversamplingDisplay = new JFormattedTextField();
+				oversamplingDisplay.setEditable(false);
+				Parameters.OVERSAMPLING.setUiMembers(oversamplingDisplay, oversamplingDisplay.getClass());
+				oversamplingDisplay.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						keyPad oversamplingKeyPad = new keyPad("Oversampling: ");
+						oversamplingKeyPad.setVisible(true);
+						
+						 oversamplingKeyPad.addWindowListener(new WindowListener() {
+					            public void windowClosed(WindowEvent arg0) {
+					            		delayDisplay.setText(oversamplingKeyPad.returnField());
+					               squelchDelay = delayDisplay.getText();
+					            }
+					            public void windowActivated(WindowEvent arg0) {
+					            }
+					            public void windowClosing(WindowEvent arg0) {
+					            }
+					            public void windowDeactivated(WindowEvent arg0) {
+					            }
+					            public void windowDeiconified(WindowEvent arg0) {
+					            }
+					            public void windowIconified(WindowEvent arg0) {
+					            }
+					            public void windowOpened(WindowEvent arg0) {
+					            }
+					        });
+						
+					}
+				});
 		
 		JFormattedTextField gainField = new JFormattedTextField();
 		gainField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -201,6 +441,7 @@ public class homeScreen extends JFrame {
 		squSlider.setValue(0);
 		squField.setText("0");
 		squelch = squField.getText();
+		Parameters.SQUELCH_LEVEL.setUiMembers(squField, squField.getClass());
 		squSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				squField.setText("" + squSlider.getValue());
@@ -224,69 +465,25 @@ public class homeScreen extends JFrame {
 		squLabel.setLabelFor(squField);
 		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		squLabel.setForeground(new Color(255, 250, 250));
-		freqDisplay.setText("91100000");
-		frequency = freqDisplay.getText();
 		
-		JFormattedTextField ipDisplay = new JFormattedTextField();
-		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-		ipDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				keyPad ipKeyPad = new keyPad("IP Address:");
-				ipKeyPad.setVisible(true);
-				
-				 ipKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                ipDisplay.setText(ipKeyPad.returnField());
-			            	 try {
-			            	                tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
-					                tcpClientThread = new Thread(tcpClient);
-					                tcpClientThread.start();
-					                listener = new ResponseListener(tcpClient, instance);
-					                listenerThread = new Thread(listener);
-					                listenerThread.start();
-								} catch (UnknownHostException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-			}
-		});
-		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		ipDisplay.setEditable(false);
+		
 		
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
 		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
 		JRadioButton rdbtnDC = new JRadioButton("dc");
-	        enableOptionUiMatcher.add("dc", rdbtnDC);
+	    enableOptionUiMatcher.add("dc", rdbtnDC);
 		
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
-                enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
+        enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
 		
 		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
-                enableOptionUiMatcher.add("direct", rdbtnDIRECT);
+        enableOptionUiMatcher.add("direct", rdbtnDIRECT);
 		
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
-                enableOptionUiMatcher.add("offset", rdbtnOFFSET);
+        enableOptionUiMatcher.add("offset", rdbtnOFFSET);
 		
-                Parameters.ENABLE_OPTION.setUiMembers(enableOptionUiMatcher, enableOptionUiMatcher.getClass());
+        Parameters.ENABLE_OPTION.setUiMembers(enableOptionUiMatcher, enableOptionUiMatcher.getClass());
                 
 		JButton btnExecute = new JButton("Execute");
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
@@ -431,68 +628,6 @@ public class homeScreen extends JFrame {
 		lblPpmError.setForeground(Color.WHITE);
 		lblPpmError.setLabelFor(ipDisplay);
 		lblPpmError.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JFormattedTextField oversamplingDisplay = new JFormattedTextField();
-		oversamplingDisplay.setEditable(false);
-		oversamplingDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				keyPad oversamplingKeyPad = new keyPad("Oversampling:");
-				oversamplingKeyPad.setVisible(true);
-				
-				 oversamplingKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                oversamplingDisplay.setText(oversamplingKeyPad.returnField());
-			               overSampling = oversamplingDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-				
-				
-			}
-		});
-		lblOversampling.setLabelFor(oversamplingDisplay);
-		
-		JFormattedTextField ppmDisplay = new JFormattedTextField();
-		ppmDisplay.setEditable(false);
-		ppmDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad ppmKeyPad = new keyPad("PPM Error: ");
-				ppmKeyPad.setVisible(true);
-				
-				 ppmKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                ppmDisplay.setText(ppmKeyPad.returnField());
-			               ppmError = ppmDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-				
-			}
-		});
 		lblPpmError.setLabelFor(ppmDisplay);
 		
 		JLabel lblResampleRate = new JLabel("Resample Rate:");
@@ -500,36 +635,6 @@ public class homeScreen extends JFrame {
 		lblResampleRate.setForeground(Color.WHITE);
 		lblResampleRate.setLabelFor(ipDisplay);
 		lblResampleRate.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JFormattedTextField resampleDisplay = new JFormattedTextField();
-		resampleDisplay.setEditable(false);
-		resampleDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad resampleKeyPad = new keyPad("Resample Rate:");
-				resampleKeyPad.setVisible(true);
-				
-				 resampleKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                resampleDisplay.setText(resampleKeyPad.returnField());
-			               resampleRate = resampleDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-				
-			}
-		});
 		lblResampleRate.setLabelFor(resampleDisplay);
 		
 		JLabel lblSampleRate = new JLabel("Sample Rate:");
@@ -537,36 +642,6 @@ public class homeScreen extends JFrame {
 		lblSampleRate.setForeground(Color.WHITE);
 		lblSampleRate.setLabelFor(ipDisplay);
 		lblSampleRate.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		
-		JFormattedTextField sampleDisplay = new JFormattedTextField();
-		sampleDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad samplerateKeyPad = new keyPad("Sample Rate: ");
-				samplerateKeyPad.setVisible(true);
-				
-				 samplerateKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                sampleDisplay.setText(samplerateKeyPad.returnField());
-			               sampleRate = sampleDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-			}
-		});
-		sampleDisplay.setEditable(false);
 		lblSampleRate.setLabelFor(sampleDisplay);
 		
 		JLabel lblScannableFrequency = new JLabel("<html>Scannable<br>Frequency:</html>");
@@ -574,35 +649,6 @@ public class homeScreen extends JFrame {
 		lblScannableFrequency.setForeground(Color.WHITE);
 		lblScannableFrequency.setLabelFor(ipDisplay);
 		lblScannableFrequency.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JFormattedTextField scannableDisplay = new JFormattedTextField();
-		scannableDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad scannableKeyPad = new keyPad("Scannable: ");
-				scannableKeyPad.setVisible(true);
-				
-				 scannableKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			                scannableDisplay.setText(scannableKeyPad.returnField());
-			               scannableFrequency = scannableDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-			}
-		});
-		scannableDisplay.setEditable(false);
 		lblScannableFrequency.setLabelFor(scannableDisplay);
 		
 		JLabel lblSquelchDelay = new JLabel("<html>Squelch<br>Delay:</html>");
@@ -610,37 +656,6 @@ public class homeScreen extends JFrame {
 		lblSquelchDelay.setForeground(Color.WHITE);
 		lblSquelchDelay.setLabelFor(ipDisplay);
 		lblSquelchDelay.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		
-		JFormattedTextField delayDisplay = new JFormattedTextField();
-		delayDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad delayKeyPad = new keyPad("Squelch Delay: ");
-				delayKeyPad.setVisible(true);
-				
-				 delayKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			            		delayDisplay.setText(delayKeyPad.returnField());
-			               squelchDelay = delayDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-				
-			}
-		});
-		delayDisplay.setEditable(false);
 		lblSquelchDelay.setLabelFor(delayDisplay);
 		
 		JButton stopButton = new JButton("Stop");

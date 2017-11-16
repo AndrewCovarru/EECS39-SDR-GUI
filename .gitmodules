@@ -1,3 +1,6 @@
+[submodule "WindowBuilder/--force"]
+	path = WindowBuilder/--force
+	url = git@github.com:AndrewCovarru/rtlsdrdJavaInterfaces.git
 [submodule "WindowBuilder/rtlsdrdJavaInterfaces"]
 	path = WindowBuilder/rtlsdrdJavaInterfaces
 	url = git@github.com:AndrewCovarru/rtlsdrdJavaInterfaces.git
