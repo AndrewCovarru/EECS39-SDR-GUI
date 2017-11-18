@@ -466,6 +466,22 @@ public class homeScreen extends JFrame {
 			}
 		});
 		
+		JLabel volLabel = new JLabel("Volume: ");
+		volLabel.setLabelFor(volField);
+		volLabel.setForeground(new Color(255, 250, 250));
+		volLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
+		
+		JLabel gainLabel = new JLabel("Gain:");
+		gainLabel.setLabelFor(gainField);
+		gainLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
+		gainLabel.setForeground(new Color(255, 250, 250));
+		
+		JLabel squLabel = new JLabel("Squelch:");
+		squLabel.setLabelFor(squField);
+		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
+		squLabel.setForeground(new Color(255, 250, 250));
+		
+		
 		/*
 		 * Contains all of the JRadioButtons used throughout
 		 */
@@ -502,7 +518,6 @@ public class homeScreen extends JFrame {
 		modMode.setModel(new DefaultComboBoxModel(new String[] {"fm", "wbfm", "raw", "am", "usb", "lsb"}));
 		modMode.setMaximumRowCount(6);
 		modMode.setSelectedItem(modMode.getItemAt(0));
-		Parameters.MODULATION_MODE.setUiMembers(modMode, modMode.getClass());
 		modulationMode = modMode.getSelectedItem().toString();
 		modMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -511,11 +526,10 @@ public class homeScreen extends JFrame {
 		});
 		
 		//FIR Size
-		JComboBox<String> firDrop = new JComboBox<>();
+		JComboBox firDrop = new JComboBox();
 		firDrop.setMaximumRowCount(3);
 		firDrop.setModel(new DefaultComboBoxModel(new String[] {"-1", "0", "9"}));
 		firDrop.setSelectedIndex(0);
-		Parameters.FIR_SIZE.setUiMembers(firDrop, firDrop.getClass());
 		firDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				firSize = firDrop.getSelectedItem().toString();
@@ -523,10 +537,9 @@ public class homeScreen extends JFrame {
 		});
 		
 		//Atan Math
-		JComboBox<String> atanMathDrop = new JComboBox<>();
+		JComboBox atanMathDrop = new JComboBox();
 		atanMathDrop.setModel(new DefaultComboBoxModel(new String[] {"std", "fast", "lut"}));
 		atanMathDrop.setMaximumRowCount(3);
-		Parameters.ATAN_MATH.setUiMembers(atanMathDrop, atanMathDrop.getClass());
 		atanMathDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atanMath = atanMathDrop.getSelectedItem().toString();
@@ -618,22 +631,6 @@ public class homeScreen extends JFrame {
 		/*
 		 * Contains all of the labels used throughout
 		 */
-		
-		JLabel volLabel = new JLabel("Volume: ");
-		volLabel.setLabelFor(volField);
-		volLabel.setForeground(new Color(255, 250, 250));
-		volLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
-		
-		JLabel gainLabel = new JLabel("Gain:");
-		gainLabel.setLabelFor(gainField);
-		gainLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
-		gainLabel.setForeground(new Color(255, 250, 250));
-		
-		JLabel squLabel = new JLabel("Squelch:");
-		squLabel.setLabelFor(squField);
-		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
-		squLabel.setForeground(new Color(255, 250, 250));
-		
 		JLabel lblIPA = new JLabel("IP Address:");
 		lblIPA.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		lblIPA.setForeground(Color.WHITE);
