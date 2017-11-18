@@ -2,12 +2,17 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Hello World" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="updateField"/>
+			<item value="oversampling"/>
+			<item value="ppm"/>
+			<item value="JFormattedTextField"/>
+			<item value="Display"/>
 			<item value="Hello World"/>
 			<item value="IP"/>
 			<item value="scannable"/>
@@ -18,11 +23,6 @@
 			<item value="update"/>
 			<item value="Tahoma"/>
 			<item value="ipdisplay"/>
-			<item value="stop"/>
-			<item value="ip"/>
-			<item value="tcpClientThread"/>
-			<item value="squelch"/>
-			<item value="freqKeyPad"/>
 		</list>
 		<list key="replacehistory">
 			<item value="field"/>
@@ -46,7 +46,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="1383" key="DIALOG_X_ORIGIN"/>
-		<item value="242" key="DIALOG_Y_ORIGIN"/>
+		<item value="1169" key="DIALOG_X_ORIGIN"/>
+		<item value="194" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

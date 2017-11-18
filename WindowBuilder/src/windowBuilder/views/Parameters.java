@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JSlider;
-import javax.swing.JSpinner;
+import javax.swing.JComboBox;
 
 import windowBuilder.views.*;
 
@@ -93,99 +93,34 @@ public enum Parameters {
         this.uiElementSpecificType = uiElementSpecificType;
     }
 
-//    /**
-//     * Gets the index of the string in the spinner if it exists
-//     *
-//     * @param spinner - the spinner to check
-//     * @param toLookUp - the string to look for in the spinner
-//     * @return - returns index of string in spinner if string exists
-//     */
-//    protected int getIndex(final Spinner spinner, final String toLookUp)
-//    {
-//        int index = 0;
-//
-//        for (int i=0;i<spinner.getCount();i++){
-//            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(toLookUp)){
-//                index = i;
-//                break;
-//            }
-//        }
-//        return index;
-//    }
-
     public void updateField(homeScreen mainActivity, final String newVal)
     {
         System.out.println("NEW VALUE: " + newVal);
         System.out.println("UPDATING FIELD: " + FUNCTION + " with val: " + newVal);
         
+        //Checks for JFormattedTextField
         if (uiElementSpecificType.equals(JFormattedTextField.class))
         {
             ((JFormattedTextField)uiElement).setValue((String)newVal);
         }
-        else if (uiElementSpecificType.equals(JSpinner.class))
+        //Checks for JComboBox
+        else if (uiElementSpecificType.equals(JComboBox.class))
         {
-            ((JSpinner)uiElement).setValue((String)newVal);
+            ((JComboBox)uiElement).setSelectedItem(newVal);
         }
+        //Checks for JSlider
         else if (uiElementSpecificType.equals(JSlider.class))
         {
             ((JSlider)uiElement).setValue(Integer.parseInt((String)newVal));
         }
+        //Checks for JRadioButtons
         else if (uiElementSpecificType.equals(EnableOptionUiMatcher.class))
         {
             ((EnableOptionUiMatcher)uiElement).enableSwitchByString(homeScreen.getInstance(), newVal);
         }    
     }
     
-//    /**
-//     * Updates the associated parameter uo field on the UI thread, used in ResponseListener.
-//     * For each type of ui element, calls respective setters to change their values programmatically
-//     * One thing to note, must set ui elements from ui thread only!! Crashes happen otherwise
-//     * @param mainActivity - main activity
-//     * @param newVal - the new value of the ui thread to be set to.
-//     */
-//    public synchronized void updateField(Activity mainActivity, final String newVal)
-//    {
-//        //if EditText
-//        if (uiElementSpecificType.equals(android.support.v7.widget.AppCompatEditText.class))
-//        {
-//            mainActivity.runOnUiThread(new Runnable() {
-//               @Override
-//               public void run() {
-//                    //setText on Edit Text objects to newval
-//                   ((android.widget.EditText) uiElement).setText(newVal);
-//               }
-//           });
-//        }
-//        //if enableoptionmatcherclass, call the enableswitchbystring method for that enable option
-//        if (uiElementSpecificType.equals(EnableOptionUiMatcher.class))
-//        {
-//            ((EnableOptionUiMatcher) uiElement).enableSwitchByString(mainActivity, newVal);
-//        }
-//
-//        //if seekbar, set progress of seek bar to new val
-//        if (uiElementSpecificType.equals(android.support.v7.widget.AppCompatSeekBar.class))
-//        {
-//            final int newValInt = Integer.parseInt(newVal);
-//            mainActivity.runOnUiThread(new Runnable() {
-//               @Override
-//               public void run() {
-//                   ((android.widget.SeekBar) uiElement).setProgress(newValInt);
-//               }
-//           });
-//        }
-//
-//        //if Spinner, set the spinner to the index of the new val
-//        if (uiElementSpecificType.equals(android.support.v7.widget.AppCompatSpinner.class))
-//        {
-//            mainActivity.runOnUiThread(new Runnable() {
-//               @Override
-//               public void run() {
-//                   ((android.widget.Spinner) uiElement).setSelection(getIndex((android.widget.Spinner) uiElement, newVal));
-//               }
-//           });
-//        }
-//    }
-
+//   
     /**
      * Get uiElement for Parameter
      * @return returns UI element for this parameter
