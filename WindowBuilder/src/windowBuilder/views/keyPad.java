@@ -29,7 +29,7 @@ public class keyPad extends JDialog {
 	}
 	
 	
-	public keyPad(String name) {
+	public keyPad(String name, String currentValue) {
 
 		setBounds(250, 100, 300, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -37,6 +37,7 @@ public class keyPad extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField entryField = new JFormattedTextField();
+		entryField.setText(currentValue);
 		JLabel lblField = new JLabel(name);
 		lblField.setForeground(new Color(255, 250, 250));
 		lblField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));

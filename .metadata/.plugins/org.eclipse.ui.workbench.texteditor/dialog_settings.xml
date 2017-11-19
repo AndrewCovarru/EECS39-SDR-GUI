@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="oversample" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="oversample"/>
+			<item value="delayDisplay"/>
+			<item value="keyPad"/>
+			<item value="defaults"/>
+			<item value="execute"/>
+			<item value="execue"/>
+			<item value="sampleRate"/>
+			<item value="JSpinner"/>
+			<item value="JComboBox"/>
+			<item value="modeMode"/>
+			<item value="modMode"/>
 			<item value="updateField"/>
 			<item value="oversampling"/>
 			<item value="ppm"/>
 			<item value="JFormattedTextField"/>
-			<item value="Display"/>
-			<item value="Hello World"/>
-			<item value="IP"/>
-			<item value="scannable"/>
-			<item value="lblField"/>
-			<item value="freq"/>
-			<item value="frequency"/>
-			<item value="freqField"/>
-			<item value="update"/>
-			<item value="Tahoma"/>
-			<item value="ipdisplay"/>
 		</list>
 		<list key="replacehistory">
 			<item value="field"/>

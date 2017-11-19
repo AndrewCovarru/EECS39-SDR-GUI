@@ -98,7 +98,7 @@ public class homeScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public homeScreen() {
-	        instance = this;
+	    instance = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 450);
 		contentPane = new JPanel();
@@ -123,7 +123,7 @@ public class homeScreen extends JFrame {
 		freqDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				keyPad freqKeyPad = new keyPad("Frequency: ");
+				keyPad freqKeyPad = new keyPad("Frequency: ", freqDisplay.getText());
 				freqKeyPad.setVisible(true);
 				
 				 freqKeyPad.addWindowListener(new WindowListener() {
@@ -157,7 +157,7 @@ public class homeScreen extends JFrame {
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				keyPad ipKeyPad = new keyPad("IP Address:");
+				keyPad ipKeyPad = new keyPad("IP Address:", ipDisplay.getText());
 				ipKeyPad.setVisible(true);
 				
 				 ipKeyPad.addWindowListener(new WindowListener() {
@@ -197,13 +197,13 @@ public class homeScreen extends JFrame {
 		//PPM Error
 		JFormattedTextField ppmDisplay = new JFormattedTextField();
 		ppmDisplay.setEditable(false);
-		ppmDisplay.setText("0");
+		ppmDisplay.setText("default");
 		ppmError = ppmDisplay.getText();
 		Parameters.PPM_ERROR.setUiMembers(ppmDisplay, ppmDisplay.getClass());
 		ppmDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				keyPad ppmKeyPad = new keyPad("PPM Error: ");
+				keyPad ppmKeyPad = new keyPad("PPM Error: ", ppmDisplay.getText());
 				ppmKeyPad.setVisible(true);
 				
 				 ppmKeyPad.addWindowListener(new WindowListener() {
@@ -231,13 +231,13 @@ public class homeScreen extends JFrame {
 		//Resample Rate 
 		JFormattedTextField resampleDisplay = new JFormattedTextField();
 		resampleDisplay.setEditable(false);
-		resampleDisplay.setText("24000");
+		resampleDisplay.setText("default");
 		resampleRate = resampleDisplay.getText();
 		Parameters.RESAMPLE_RATE.setUiMembers(resampleDisplay, resampleDisplay.getClass());
 		resampleDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				keyPad resampleKeyPad = new keyPad("Resample Rate:");
+				keyPad resampleKeyPad = new keyPad("Resample Rate:", resampleDisplay.getText());
 				resampleKeyPad.setVisible(true);
 				
 				 resampleKeyPad.addWindowListener(new WindowListener() {
@@ -265,13 +265,13 @@ public class homeScreen extends JFrame {
 		//Sample Rate
 		JFormattedTextField sampleDisplay = new JFormattedTextField();
 		sampleDisplay.setEditable(false);
-		sampleDisplay.setText("24000");
+		sampleDisplay.setText("default");
 		sampleRate = sampleDisplay.getText();
 		Parameters.SAMPLE_RATE.setUiMembers(sampleDisplay, sampleDisplay.getClass());
 		sampleDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				keyPad samplerateKeyPad = new keyPad("Sample Rate: ");
+				keyPad samplerateKeyPad = new keyPad("Sample Rate: ", sampleDisplay.getText());
 				samplerateKeyPad.setVisible(true);
 				
 				 samplerateKeyPad.addWindowListener(new WindowListener() {
@@ -295,47 +295,16 @@ public class homeScreen extends JFrame {
 			}
 		});
 		
-		//Scannable Display
-		JFormattedTextField scannableDisplay = new JFormattedTextField();
-		scannableDisplay.setEditable(false);
-		Parameters.SCANNABLE_FREQUENCY.setUiMembers(scannableDisplay, scannableDisplay.getClass());
-		scannableDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad scannableKeyPad = new keyPad("Scannable: ");
-				scannableKeyPad.setVisible(true);
-				
-				 scannableKeyPad.addWindowListener(new WindowListener() {
-			            public void windowClosed(WindowEvent arg0) {
-			               scannableDisplay.setText(scannableKeyPad.returnField());
-			               scannableFrequency = scannableDisplay.getText();
-			            }
-			            public void windowActivated(WindowEvent arg0) {
-			            }
-			            public void windowClosing(WindowEvent arg0) {
-			            }
-			            public void windowDeactivated(WindowEvent arg0) {
-			            }
-			            public void windowDeiconified(WindowEvent arg0) {
-			            }
-			            public void windowIconified(WindowEvent arg0) {
-			            }
-			            public void windowOpened(WindowEvent arg0) {
-			            }
-			        });
-			}
-		});		
-		
 		//Squelch Delay
 		JFormattedTextField delayDisplay = new JFormattedTextField();
 		delayDisplay.setEditable(false);
-		delayDisplay.setText("10");
+		delayDisplay.setText("default");
 		squelchDelay = delayDisplay.getText();
 		Parameters.SQUELCH_DELAY.setUiMembers(delayDisplay, delayDisplay.getClass());
 		delayDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				keyPad delayKeyPad = new keyPad("Squelch Delay: ");
+				keyPad delayKeyPad = new keyPad("Squelch Delay: ", delayDisplay.getText());
 				delayKeyPad.setVisible(true);
 				
 				 delayKeyPad.addWindowListener(new WindowListener() {
@@ -360,64 +329,6 @@ public class homeScreen extends JFrame {
 			}
 		});
 		
-		//Oversampling Rate
-		JFormattedTextField oversamplingDisplay = new JFormattedTextField();
-		oversamplingDisplay.setEditable(false);
-		Parameters.OVERSAMPLING.setUiMembers(oversamplingDisplay, oversamplingDisplay.getClass());
-		oversamplingDisplay.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				keyPad oversamplingKeyPad = new keyPad("Oversampling: ");
-				oversamplingKeyPad.setVisible(true);
-				oversamplingKeyPad.addWindowListener(new WindowListener() {
-					public void windowClosed(WindowEvent arg0) {
-						oversamplingDisplay.setText(oversamplingKeyPad.returnField());
-						overSampling = oversamplingDisplay.getText();
-						}
-					public void windowActivated(WindowEvent arg0) {
-						
-					}
-					public void windowClosing(WindowEvent arg0) {
-						
-					}
-					public void windowDeactivated(WindowEvent arg0) {
-						
-					}
-					public void windowDeiconified(WindowEvent arg0) {
-						
-					}
-					public void windowIconified(WindowEvent arg0) {
-						
-					}
-					public void windowOpened(WindowEvent arg0) {
-						
-					}
-					});
-						
-					}
-				});
-		
-		JFormattedTextField gainField = new JFormattedTextField();
-		gainField.setHorizontalAlignment(SwingConstants.CENTER);
-		gainField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 35));
-		gainField.setEditable(false);
-		gainField.setText("50");
-		gain = gainField.getText();
-		//Parameters.TUNER_GAIN.setUiMembers(gainField, gainField.getClass());
-		
-		JFormattedTextField volField = new JFormattedTextField();
-		volField.setHorizontalAlignment(SwingConstants.CENTER);
-		volField.setFont(volField.getFont().deriveFont(volField.getFont().getSize() + 24f));
-		volField.setEditable(false);
-		volField.setText("100");
-		Parameters.VOLUME.setUiMembers(volField, volField.getClass());
-		
-		JFormattedTextField squField = new JFormattedTextField();
-		squField.setHorizontalAlignment(SwingConstants.CENTER);
-		squField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 35));
-		squField.setEditable(false);
-		Parameters.SQUELCH_LEVEL.setUiMembers(squField, squField.getClass());
-		
 		
 		/*
 		 * Contains all of the JSliders used throughout
@@ -425,44 +336,38 @@ public class homeScreen extends JFrame {
 		
 		//Gain
 		JSlider gainSlider = new JSlider();
+		gainSlider.setMaximum(50);
 		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.setBackground(new Color(105, 105, 105));
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				double percentage = (double)gainSlider.getValue()/100;
-				double gainPercent = Math.round((49.6 * percentage) * 100.0) / 100.0; 
-				gainField.setText("" + gainPercent);
-				gain = gainField.getText();
+				gain = Integer.toString(gainSlider.getValue());
 			}
 		});
 		
 		//Volume
 		JSlider volSlider = new JSlider();
+		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
 		volSlider.setValue(100);
 		volSlider.setBackground(new Color(105, 105, 105));
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		volume = volField.getText();
-		Parameters.VOLUME.setUiMembers(volField, volField.getClass());
 		volSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				volField.setText("" + volSlider.getValue());
-				volume = volField.getText();
+				volume = Integer.toString(volSlider.getValue());
 			}
 		});
 		
 		//Squelch
 		JSlider squSlider = new JSlider();
+		squSlider.setMaximum(500);
+		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
 		squSlider.setValue(0);
-		squField.setText("0");
-		squelch = squField.getText();
 		squSlider.setBackground(new Color(105, 105, 105));
 		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		Parameters.SQUELCH_LEVEL.setUiMembers(squField, squField.getClass());
 		squSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				squField.setText("" + squSlider.getValue());
-				squelch = squField.getText();
+				squelch = Integer.toString(squSlider.getValue());
 			}
 		});
 		
@@ -472,22 +377,32 @@ public class homeScreen extends JFrame {
 		
 		//Edge
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
+		rdbtnEDGE.setForeground(Color.WHITE);
+		rdbtnEDGE.setBackground(new Color(105, 105, 105));
 		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
 		//DC
 		JRadioButton rdbtnDC = new JRadioButton("dc");
+		rdbtnDC.setBackground(new Color(105, 105, 105));
+		rdbtnDC.setForeground(Color.WHITE);
 	    enableOptionUiMatcher.add("dc", rdbtnDC);
 		
 	    //DEEMP
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
+		rdbtnDEEMP.setForeground(Color.WHITE);
+		rdbtnDEEMP.setBackground(new Color(105, 105, 105));
         enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
 		
         //Direct
 		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
+		rdbtnDIRECT.setForeground(Color.WHITE);
+		rdbtnDIRECT.setBackground(new Color(105, 105, 105));
         enableOptionUiMatcher.add("direct", rdbtnDIRECT);
 		
         //Offset
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
+		rdbtnOFFSET.setForeground(Color.WHITE);
+		rdbtnOFFSET.setBackground(new Color(105, 105, 105));
         enableOptionUiMatcher.add("offset", rdbtnOFFSET);
 		
         Parameters.ENABLE_OPTION.setUiMembers(enableOptionUiMatcher, enableOptionUiMatcher.getClass());
@@ -513,7 +428,7 @@ public class homeScreen extends JFrame {
 		//FIR Size
 		JComboBox<String> firDrop = new JComboBox<>();
 		firDrop.setMaximumRowCount(3);
-		firDrop.setModel(new DefaultComboBoxModel(new String[] {"-1", "0", "9"}));
+		firDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "0", "9"}));
 		firDrop.setSelectedIndex(0);
 		Parameters.FIR_SIZE.setUiMembers(firDrop, firDrop.getClass());
 		firDrop.addActionListener(new ActionListener() {
@@ -532,6 +447,16 @@ public class homeScreen extends JFrame {
 				atanMath = atanMathDrop.getSelectedItem().toString();
 			}
 		});
+		
+		JComboBox oversampleDrop = new JComboBox();
+		oversampleDrop.setMaximumRowCount(5);
+		oversampleDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "1", "2", "3", "4"}));
+		Parameters.OVERSAMPLING.setUiMembers(oversampleDrop, oversampleDrop.getClass());
+		oversampleDrop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				overSampling = oversampleDrop.getSelectedItem().toString();
+			}
+		});
         
         
         /*
@@ -544,6 +469,45 @@ public class homeScreen extends JFrame {
 		stopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tcpClient.sendToServer("STOP");
+			}
+		});
+		
+		JButton defaultButton = new JButton("Defaults");
+		defaultButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+		defaultButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Text Boxes
+				freqDisplay.setText("91100000");
+				frequency = freqDisplay.getText();
+				
+				sampleDisplay.setText("default");
+				sampleRate = sampleDisplay.getText();
+				
+				resampleDisplay.setText("default");
+				resampleRate = resampleDisplay.getText();
+				
+				ppmDisplay.setText("default");
+				ppmError = ppmDisplay.getText();
+				
+				delayDisplay.setText("default");
+				squelchDelay = delayDisplay.getText();
+				
+				
+				//Drop Downs
+				modMode.setSelectedItem("fm");
+				modulationMode = modMode.getSelectedItem().toString();
+				
+				firDrop.setSelectedItem("default");
+				firSize = firDrop.getSelectedItem().toString();
+				
+				atanMathDrop.setSelectedItem("std");
+				atanMath = atanMathDrop.getSelectedItem().toString();
+				
+				oversampleDrop.setSelectedItem("default");
+				overSampling = oversampleDrop.getSelectedItem().toString();
+				
+				//Sliders
+				
 			}
 		});
                 
@@ -620,17 +584,14 @@ public class homeScreen extends JFrame {
 		 */
 		
 		JLabel volLabel = new JLabel("Volume: ");
-		volLabel.setLabelFor(volField);
 		volLabel.setForeground(new Color(255, 250, 250));
 		volLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		
 		JLabel gainLabel = new JLabel("Gain:");
-		gainLabel.setLabelFor(gainField);
 		gainLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		gainLabel.setForeground(new Color(255, 250, 250));
 		
 		JLabel squLabel = new JLabel("Squelch:");
-		squLabel.setLabelFor(squField);
 		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		squLabel.setForeground(new Color(255, 250, 250));
 		
@@ -667,9 +628,9 @@ public class homeScreen extends JFrame {
 		lblFirsize.setLabelFor(firDrop);
 		
 		JLabel lblOversampling = new JLabel("Oversampling:");
+		lblOversampling.setLabelFor(oversampleDrop);
 		lblOversampling.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		lblOversampling.setForeground(Color.WHITE);
-		lblOversampling.setLabelFor(ipDisplay);
 		lblOversampling.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		
@@ -694,13 +655,6 @@ public class homeScreen extends JFrame {
 		lblSampleRate.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSampleRate.setLabelFor(sampleDisplay);
 		
-		JLabel lblScannableFrequency = new JLabel("<html>Scannable<br>Frequency:</html>");
-		lblScannableFrequency.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblScannableFrequency.setForeground(Color.WHITE);
-		lblScannableFrequency.setLabelFor(ipDisplay);
-		lblScannableFrequency.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScannableFrequency.setLabelFor(scannableDisplay);
-		
 		JLabel lblSquelchDelay = new JLabel("<html>Squelch<br>Delay:</html>");
 		lblSquelchDelay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		lblSquelchDelay.setForeground(Color.WHITE);
@@ -722,174 +676,177 @@ public class homeScreen extends JFrame {
 									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
 									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblOversampling)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblIPA)
-										.addComponent(lblScannableFrequency))
-									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(scannableDisplay, 101, 101, 101)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(ipDisplay, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-											.addComponent(resampleDisplay, Alignment.TRAILING)
-											.addComponent(oversamplingDisplay, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))))
+										.addComponent(lblSampleRate)
+										.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblPpmError)
+										.addComponent(lblIPA)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+											.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+													.addGroup(gl_contentPane.createSequentialGroup()
+														.addComponent(rdbtnDIRECT)
+														.addGap(18))
+													.addGroup(gl_contentPane.createSequentialGroup()
+														.addComponent(lblEnableOption)
+														.addPreferredGap(ComponentPlacement.RELATED)))
+												.addComponent(rdbtnEDGE))
+											.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+									.addGap(6))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblEnableOption)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(rdbtnEDGE)
-												.addComponent(rdbtnDC)
-												.addComponent(rdbtnDEEMP))
-											.addGap(4)))
-									.addGap(7)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(rdbtnDIRECT)
-										.addComponent(rdbtnOFFSET)))
-								.addComponent(stopButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(squField, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+										.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+										.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+									.addGap(9))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(volLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(volField, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-									.addGap(180))
+									.addGap(280))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-									.addGap(250))))
-						.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
-					.addGap(32)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addGap(332))))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnExecute)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblSquelchDelay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblSampleRate)
-										.addComponent(lblAtanMath)
-										.addComponent(lblModulation))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(ppmDisplay, Alignment.TRAILING)
-										.addComponent(sampleDisplay, Alignment.TRAILING)
-										.addComponent(modMode, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-										.addComponent(delayDisplay, Alignment.TRAILING, 79, 79, Short.MAX_VALUE)))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addComponent(lblFirsize)
-									.addGap(57)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(atanMathDrop, Alignment.TRAILING, 0, 57, Short.MAX_VALUE)
-										.addComponent(firDrop, 0, 57, Short.MAX_VALUE))))
-							.addGap(51))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+								.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblPpmError)
-							.addContainerGap())))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(defaultButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnExecute))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+									.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGap(55)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+													.addComponent(lblAtanMath)
+													.addComponent(lblModulation)
+													.addComponent(lblOversampling, Alignment.TRAILING)
+													.addComponent(lblSquelchDelay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(delayDisplay, 79, 91, Short.MAX_VALUE))
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addComponent(lblFirsize)
+												.addGap(57)
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+													.addComponent(oversampleDrop, Alignment.TRAILING, 0, 76, Short.MAX_VALUE)
+													.addComponent(atanMathDrop, Alignment.TRAILING, 0, 76, Short.MAX_VALUE)
+													.addComponent(firDrop, 0, 76, Short.MAX_VALUE)))))))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addGap(32)
+								.addComponent(rdbtnDC)
+								.addGap(18)
+								.addComponent(rdbtnDEEMP)
+								.addGap(18)
+								.addComponent(rdbtnOFFSET))))
+					.addGap(51))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(atanMathDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblAtanMath))
-									.addGap(17)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblFirsize)
-										.addComponent(firDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(11)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(oversamplingDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblModulation))
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addGap(2)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(4)
-											.addComponent(lblResampleRate)
-											.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-												.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-											.addGap(5))
+												.addComponent(atanMathDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblAtanMath))
+											.addGap(17)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+												.addComponent(lblFirsize)
+												.addComponent(firDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addGap(11)
+											.addComponent(lblModulation)
+											.addGap(4))
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(21)
-											.addComponent(lblPpmError)
-											.addPreferredGap(ComponentPlacement.RELATED))))
-								.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(6)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(volField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-										.addComponent(volLabel)
-										.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(scannableDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
+											.addGap(27)
+											.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(lblSampleRate)
+											.addGap(12)))
+									.addGap(10)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblScannableFrequency, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblSampleRate)))))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+											.addGap(22)
+											.addComponent(oversampleDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblOversampling)
+											.addGap(22))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblResampleRate)
+											.addGap(28))))
+								.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(6)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGap(6)
+										.addComponent(volLabel))
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGap(15)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+											.addComponent(lblPpmError)
+											.addComponent(lblSquelchDelay))))
+								.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblIPA)
-								.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addComponent(lblOversampling)))
-					.addGap(18)
+							.addComponent(lblIPA)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(24)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(gainField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-								.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblEnableOption)
-										.addComponent(lblSquelchDelay)
-										.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-									.addGap(10))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-									.addComponent(rdbtnEDGE)
-									.addComponent(rdbtnDIRECT)))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblEnableOption)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(rdbtnDIRECT))
+								.addComponent(rdbtnEDGE)
 								.addComponent(rdbtnDC)
+								.addComponent(rdbtnDEEMP)
 								.addComponent(rdbtnOFFSET)))
-						.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+					.addGap(15)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(15)
 							.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(squLabel)
-								.addComponent(squField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addComponent(squLabel)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnDEEMP)
-							.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-								.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+								.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+								.addComponent(defaultButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(173))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
