@@ -42,13 +42,16 @@ import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 import javax.swing.JEditorPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+
 //import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 
 public class homeScreen extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -74,6 +77,10 @@ public class homeScreen extends JFrame {
 	private String gain;
 	private String volume;
 	
+	//Creates CWRU Blue & Gray
+	Color cwruBlue = new Color(10, 48, 78);
+	Color cwruGray = new Color (106, 106, 106);
+	
 	private static homeScreen instance;
 	
 	public static homeScreen getInstance()
@@ -82,6 +89,11 @@ public class homeScreen extends JFrame {
 	}	
 
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -102,7 +114,7 @@ public class homeScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 450);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(105, 105, 105));
+		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -112,10 +124,11 @@ public class homeScreen extends JFrame {
 		
 		//Frequency
 		JFormattedTextField freqDisplay = 	new JFormattedTextField();
+		freqDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		freqDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 60));
 		freqDisplay.setEditable(false);
 		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-		freqDisplay.setForeground(new Color(255, 250, 250));
+		freqDisplay.setForeground(Color.GREEN);
 		freqDisplay.setBackground(new Color(0, 0, 0));
 		freqDisplay.setText("91100000");
 		frequency = freqDisplay.getText();
@@ -151,6 +164,9 @@ public class homeScreen extends JFrame {
 		
 		//IP Address
 		JFormattedTextField ipDisplay = new JFormattedTextField();
+		ipDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		ipDisplay.setBackground(new Color(0, 0, 0));
+		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
@@ -196,6 +212,9 @@ public class homeScreen extends JFrame {
 		
 		//PPM Error
 		JFormattedTextField ppmDisplay = new JFormattedTextField();
+		ppmDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		ppmDisplay.setBackground(new Color(0, 0, 0));
+		ppmDisplay.setForeground(Color.GREEN);
 		ppmDisplay.setEditable(false);
 		ppmDisplay.setText("default");
 		ppmError = ppmDisplay.getText();
@@ -230,6 +249,9 @@ public class homeScreen extends JFrame {
 		
 		//Resample Rate 
 		JFormattedTextField resampleDisplay = new JFormattedTextField();
+		resampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		resampleDisplay.setBackground(new Color(0, 0, 0));
+		resampleDisplay.setForeground(Color.GREEN);
 		resampleDisplay.setEditable(false);
 		resampleDisplay.setText("default");
 		resampleRate = resampleDisplay.getText();
@@ -264,6 +286,9 @@ public class homeScreen extends JFrame {
 		
 		//Sample Rate
 		JFormattedTextField sampleDisplay = new JFormattedTextField();
+		sampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		sampleDisplay.setBackground(new Color(0, 0, 0));
+		sampleDisplay.setForeground(Color.GREEN);
 		sampleDisplay.setEditable(false);
 		sampleDisplay.setText("default");
 		sampleRate = sampleDisplay.getText();
@@ -297,6 +322,9 @@ public class homeScreen extends JFrame {
 		
 		//Squelch Delay
 		JFormattedTextField delayDisplay = new JFormattedTextField();
+		delayDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		delayDisplay.setBackground(new Color(0, 0, 0));
+		delayDisplay.setForeground(Color.GREEN);
 		delayDisplay.setEditable(false);
 		delayDisplay.setText("default");
 		squelchDelay = delayDisplay.getText();
@@ -377,32 +405,32 @@ public class homeScreen extends JFrame {
 		
 		//Edge
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
-		rdbtnEDGE.setForeground(Color.WHITE);
-		rdbtnEDGE.setBackground(new Color(105, 105, 105));
+		rdbtnEDGE.setForeground(Color.GREEN);
+		rdbtnEDGE.setBackground(new Color(0, 0, 0));
 		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
 		//DC
 		JRadioButton rdbtnDC = new JRadioButton("dc");
-		rdbtnDC.setBackground(new Color(105, 105, 105));
-		rdbtnDC.setForeground(Color.WHITE);
+		rdbtnDC.setBackground(new Color(0, 0, 0));
+		rdbtnDC.setForeground(Color.GREEN);
 	    enableOptionUiMatcher.add("dc", rdbtnDC);
 		
 	    //DEEMP
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
-		rdbtnDEEMP.setForeground(Color.WHITE);
-		rdbtnDEEMP.setBackground(new Color(105, 105, 105));
+		rdbtnDEEMP.setForeground(Color.GREEN);
+		rdbtnDEEMP.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
 		
         //Direct
 		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
-		rdbtnDIRECT.setForeground(Color.WHITE);
-		rdbtnDIRECT.setBackground(new Color(105, 105, 105));
+		rdbtnDIRECT.setForeground(Color.GREEN);
+		rdbtnDIRECT.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("direct", rdbtnDIRECT);
 		
         //Offset
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
-		rdbtnOFFSET.setForeground(Color.WHITE);
-		rdbtnOFFSET.setBackground(new Color(105, 105, 105));
+		rdbtnOFFSET.setForeground(Color.GREEN);
+		rdbtnOFFSET.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("offset", rdbtnOFFSET);
 		
         Parameters.ENABLE_OPTION.setUiMembers(enableOptionUiMatcher, enableOptionUiMatcher.getClass());
@@ -413,6 +441,9 @@ public class homeScreen extends JFrame {
         
         //Modulation Mode
         JComboBox<String> modMode = new JComboBox<>();
+        modMode.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+        modMode.setBackground(new Color(0, 0, 0));
+        modMode.setForeground(Color.GREEN);
 		modMode.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		modMode.setModel(new DefaultComboBoxModel(new String[] {"fm", "wbfm", "raw", "am", "usb", "lsb"}));
 		modMode.setMaximumRowCount(6);
@@ -427,6 +458,9 @@ public class homeScreen extends JFrame {
 		
 		//FIR Size
 		JComboBox<String> firDrop = new JComboBox<>();
+		firDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		firDrop.setBackground(new Color(0, 0, 0));
+		firDrop.setForeground(Color.GREEN);
 		firDrop.setMaximumRowCount(3);
 		firDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "0", "9"}));
 		firDrop.setSelectedIndex(0);
@@ -439,6 +473,9 @@ public class homeScreen extends JFrame {
 		
 		//Atan Math
 		JComboBox<String> atanMathDrop = new JComboBox<>();
+		atanMathDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		atanMathDrop.setBackground(new Color(0, 0, 0));
+		atanMathDrop.setForeground(Color.GREEN);
 		atanMathDrop.setModel(new DefaultComboBoxModel(new String[] {"std", "fast", "lut"}));
 		atanMathDrop.setMaximumRowCount(3);
 		Parameters.ATAN_MATH.setUiMembers(atanMathDrop, atanMathDrop.getClass());
@@ -448,7 +485,10 @@ public class homeScreen extends JFrame {
 			}
 		});
 		
-		JComboBox oversampleDrop = new JComboBox();
+		JComboBox<String> oversampleDrop = new JComboBox<>();
+		oversampleDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		oversampleDrop.setBackground(new Color(0, 0, 0));
+		oversampleDrop.setForeground(Color.GREEN);
 		oversampleDrop.setMaximumRowCount(5);
 		oversampleDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "1", "2", "3", "4"}));
 		Parameters.OVERSAMPLING.setUiMembers(oversampleDrop, oversampleDrop.getClass());
@@ -465,6 +505,9 @@ public class homeScreen extends JFrame {
 		
 		//Stop
 		JButton stopButton = new JButton("Stop");
+		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		stopButton.setForeground(Color.GREEN);
+		stopButton.setBackground(Color.BLACK);
 		stopButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		stopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -473,6 +516,9 @@ public class homeScreen extends JFrame {
 		});
 		
 		JButton defaultButton = new JButton("Defaults");
+		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		defaultButton.setBackground(Color.BLACK);
+		defaultButton.setForeground(Color.GREEN);
 		defaultButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
 		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -507,12 +553,24 @@ public class homeScreen extends JFrame {
 				overSampling = oversampleDrop.getSelectedItem().toString();
 				
 				//Sliders
+				volSlider.setValue(0);
+				squSlider.setValue(0);
+				gainSlider.setValue(0);
 				
+				//Radio Buttons
+				rdbtnEDGE.setSelected(false);
+				rdbtnDC.setSelected(false);
+				rdbtnDEEMP.setSelected(false);
+				rdbtnDIRECT.setSelected(false);
+				rdbtnOFFSET.setSelected(false);
 			}
 		});
                 
         //Execute
 		JButton btnExecute = new JButton("Execute");
+		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
+		btnExecute.setBackground(Color.BLACK);
+		btnExecute.setForeground(Color.GREEN);
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -584,45 +642,45 @@ public class homeScreen extends JFrame {
 		 */
 		
 		JLabel volLabel = new JLabel("Volume: ");
-		volLabel.setForeground(new Color(255, 250, 250));
+		volLabel.setForeground(Color.GREEN);
 		volLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		
 		JLabel gainLabel = new JLabel("Gain:");
 		gainLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
-		gainLabel.setForeground(new Color(255, 250, 250));
+		gainLabel.setForeground(Color.GREEN);
 		
 		JLabel squLabel = new JLabel("Squelch:");
 		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
-		squLabel.setForeground(new Color(255, 250, 250));
+		squLabel.setForeground(Color.GREEN);
 		
 		JLabel lblIPA = new JLabel("IP Address:");
 		lblIPA.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblIPA.setForeground(Color.WHITE);
+		lblIPA.setForeground(Color.GREEN);
 		lblIPA.setLabelFor(ipDisplay);
 		lblIPA.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblModulation = new JLabel("ModMode:");
 		lblModulation.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblModulation.setForeground(Color.WHITE);
+		lblModulation.setForeground(Color.GREEN);
 		lblModulation.setLabelFor(ipDisplay);
 		lblModulation.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblAtanMath = new JLabel("Atan Math:");
 		lblAtanMath.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblAtanMath.setForeground(Color.WHITE);
+		lblAtanMath.setForeground(Color.GREEN);
 		lblAtanMath.setLabelFor(ipDisplay);
 		lblAtanMath.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAtanMath.setLabelFor(atanMathDrop);
 		
 		JLabel lblEnableOption = new JLabel("Enable Option:");
 		lblEnableOption.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblEnableOption.setForeground(Color.WHITE);
+		lblEnableOption.setForeground(Color.GREEN);
 		lblEnableOption.setLabelFor(ipDisplay);
 		lblEnableOption.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblFirsize = new JLabel("FirSize:");
 		lblFirsize.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblFirsize.setForeground(Color.WHITE);
+		lblFirsize.setForeground(Color.GREEN);
 		lblFirsize.setLabelFor(ipDisplay);
 		lblFirsize.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFirsize.setLabelFor(firDrop);
@@ -630,34 +688,34 @@ public class homeScreen extends JFrame {
 		JLabel lblOversampling = new JLabel("Oversampling:");
 		lblOversampling.setLabelFor(oversampleDrop);
 		lblOversampling.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblOversampling.setForeground(Color.WHITE);
+		lblOversampling.setForeground(Color.GREEN);
 		lblOversampling.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		
 		JLabel lblPpmError = new JLabel("PPM Error: ");
 		lblPpmError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblPpmError.setForeground(Color.WHITE);
+		lblPpmError.setForeground(Color.GREEN);
 		lblPpmError.setLabelFor(ipDisplay);
 		lblPpmError.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPpmError.setLabelFor(ppmDisplay);
 		
 		JLabel lblResampleRate = new JLabel("Resample Rate:");
 		lblResampleRate.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblResampleRate.setForeground(Color.WHITE);
+		lblResampleRate.setForeground(Color.GREEN);
 		lblResampleRate.setLabelFor(ipDisplay);
 		lblResampleRate.setHorizontalAlignment(SwingConstants.LEFT);
 		lblResampleRate.setLabelFor(resampleDisplay);
 		
 		JLabel lblSampleRate = new JLabel("Sample Rate:");
 		lblSampleRate.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblSampleRate.setForeground(Color.WHITE);
+		lblSampleRate.setForeground(Color.GREEN);
 		lblSampleRate.setLabelFor(ipDisplay);
 		lblSampleRate.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSampleRate.setLabelFor(sampleDisplay);
 		
 		JLabel lblSquelchDelay = new JLabel("<html>Squelch<br>Delay:</html>");
 		lblSquelchDelay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		lblSquelchDelay.setForeground(Color.WHITE);
+		lblSquelchDelay.setForeground(Color.GREEN);
 		lblSquelchDelay.setLabelFor(ipDisplay);
 		lblSquelchDelay.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSquelchDelay.setLabelFor(delayDisplay);
@@ -668,13 +726,16 @@ public class homeScreen extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addContainerGap()
-									.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(freqDisplay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-									.addComponent(gainSlider, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -683,18 +744,14 @@ public class homeScreen extends JFrame {
 										.addComponent(lblResampleRate, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblPpmError)
 										.addComponent(lblIPA)
+										.addComponent(lblEnableOption)
 										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-											.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 											.addGroup(gl_contentPane.createSequentialGroup()
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-													.addGroup(gl_contentPane.createSequentialGroup()
-														.addComponent(rdbtnDIRECT)
-														.addGap(18))
-													.addGroup(gl_contentPane.createSequentialGroup()
-														.addComponent(lblEnableOption)
-														.addPreferredGap(ComponentPlacement.RELATED)))
+												.addComponent(rdbtnDIRECT)
+												.addGap(18)
 												.addComponent(rdbtnEDGE))
-											.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+											.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
 									.addGap(6))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -703,64 +760,53 @@ public class homeScreen extends JFrame {
 									.addGap(9))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(volLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-									.addGap(280))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-									.addGap(332))))
+							.addComponent(volLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+							.addGap(280))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addContainerGap()
-									.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-								.addComponent(squSlider, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
+									.addComponent(squLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
 							.addGap(18)
 							.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(defaultButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnExecute))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-									.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addGap(55)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-											.addGroup(gl_contentPane.createSequentialGroup()
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-													.addComponent(lblAtanMath)
-													.addComponent(lblModulation)
-													.addComponent(lblOversampling, Alignment.TRAILING)
-													.addComponent(lblSquelchDelay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(delayDisplay, 79, 91, Short.MAX_VALUE))
-											.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(lblFirsize)
-												.addGap(57)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-													.addComponent(oversampleDrop, Alignment.TRAILING, 0, 76, Short.MAX_VALUE)
-													.addComponent(atanMathDrop, Alignment.TRAILING, 0, 76, Short.MAX_VALUE)
-													.addComponent(firDrop, 0, 76, Short.MAX_VALUE)))))))
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addGap(32)
-								.addComponent(rdbtnDC)
-								.addGap(18)
-								.addComponent(rdbtnDEEMP)
-								.addGap(18)
-								.addComponent(rdbtnOFFSET))))
+							.addGap(55)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFirsize)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblAtanMath)
+									.addComponent(lblModulation)
+									.addComponent(lblOversampling, Alignment.TRAILING)
+									.addComponent(lblSquelchDelay, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
+							.addGap(19)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(delayDisplay, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+								.addComponent(oversampleDrop, Alignment.TRAILING, 0, 90, Short.MAX_VALUE)
+								.addComponent(atanMathDrop, Alignment.TRAILING, 0, 90, Short.MAX_VALUE)
+								.addComponent(firDrop, 0, 90, Short.MAX_VALUE)
+								.addComponent(modMode, Alignment.TRAILING, 0, 90, Short.MAX_VALUE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(17)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(rdbtnDC)
+									.addGap(33)
+									.addComponent(rdbtnDEEMP)
+									.addGap(18)
+									.addComponent(rdbtnOFFSET))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(defaultButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+									.addComponent(btnExecute, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(51))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
@@ -784,11 +830,9 @@ public class homeScreen extends JFrame {
 											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 											.addComponent(lblSampleRate)
 											.addGap(12)))
-									.addGap(10)
+									.addGap(29)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-											.addGap(22)
 											.addComponent(oversampleDrop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(ComponentPlacement.RELATED))
 										.addGroup(gl_contentPane.createSequentialGroup()
@@ -796,41 +840,44 @@ public class homeScreen extends JFrame {
 											.addGap(22))
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(lblResampleRate)
-											.addGap(28))))
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGap(2))))
 								.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(6)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addGap(6)
-										.addComponent(volLabel))
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addGap(15)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-											.addComponent(lblPpmError)
-											.addComponent(lblSquelchDelay))))
-								.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(15)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblPpmError)
+										.addComponent(lblSquelchDelay)))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(6)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(delayDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(volLabel)))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblIPA)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(resampleDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(45)))
+							.addGap(84)
+							.addComponent(modMode, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(24)
+							.addGap(9)
+							.addComponent(lblEnableOption)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblEnableOption)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(rdbtnDIRECT))
-								.addComponent(rdbtnEDGE)
-								.addComponent(rdbtnDC)
+								.addComponent(rdbtnDIRECT)
 								.addComponent(rdbtnDEEMP)
-								.addComponent(rdbtnOFFSET)))
-						.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-					.addGap(15)
+								.addComponent(rdbtnOFFSET)
+								.addComponent(rdbtnDC)
+								.addComponent(rdbtnEDGE))
+							.addGap(30))
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addComponent(volSlider, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(gainSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -846,7 +893,7 @@ public class homeScreen extends JFrame {
 							.addContainerGap())))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(173))
+					.addGap(187))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.border.BevelBorder;
 
 public class keyPad extends JDialog {
 
@@ -33,17 +34,23 @@ public class keyPad extends JDialog {
 
 		setBounds(250, 100, 300, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(105, 105, 105));
+		contentPanel.setBackground(Color.BLACK);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JFormattedTextField entryField = new JFormattedTextField();
+		entryField.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		entryField.setForeground(Color.GREEN);
+		entryField.setBackground(Color.BLACK);
 		entryField.setText(currentValue);
 		JLabel lblField = new JLabel(name);
-		lblField.setForeground(new Color(255, 250, 250));
-		lblField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+		lblField.setForeground(Color.GREEN);
+		lblField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		
 		
 		JButton button1 = new JButton("1");
+		button1.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button1.setForeground(Color.GREEN);
+		button1.setBackground(Color.BLACK);
 		button1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -55,6 +62,9 @@ public class keyPad extends JDialog {
 		});
 		
 		JButton button2 = new JButton("2");
+		button2.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button2.setForeground(Color.GREEN);
+		button2.setBackground(Color.BLACK);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -67,6 +77,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button3 = new JButton("3");
+		button3.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button3.setForeground(Color.GREEN);
+		button3.setBackground(Color.BLACK);
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -79,6 +92,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button4 = new JButton("4");
+		button4.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button4.setForeground(Color.GREEN);
+		button4.setBackground(Color.BLACK);
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -91,6 +107,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button7 = new JButton("7");
+		button7.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button7.setForeground(Color.GREEN);
+		button7.setBackground(Color.BLACK);
 		button7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -102,6 +121,9 @@ public class keyPad extends JDialog {
 		button7.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		
 		JButton buttonPeriod = new JButton(".");
+		buttonPeriod.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		buttonPeriod.setForeground(Color.GREEN);
+		buttonPeriod.setBackground(Color.BLACK);
 		buttonPeriod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -116,6 +138,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button5 = new JButton("5");
+		button5.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button5.setForeground(Color.GREEN);
+		button5.setBackground(Color.BLACK);
 		button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -128,6 +153,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button8 = new JButton("8");
+		button8.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button8.setForeground(Color.GREEN);
+		button8.setBackground(Color.BLACK);
 		button8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -140,6 +168,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button0 = new JButton("0");
+		button0.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button0.setForeground(Color.GREEN);
+		button0.setBackground(Color.BLACK);
 		button0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -152,6 +183,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button6 = new JButton("6");
+		button6.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button6.setForeground(Color.GREEN);
+		button6.setBackground(Color.BLACK);
 		button6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -164,6 +198,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton button9 = new JButton("9");
+		button9.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button9.setForeground(Color.GREEN);
+		button9.setBackground(Color.BLACK);
 		button9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() == null)
@@ -176,6 +213,9 @@ public class keyPad extends JDialog {
 
 		
 		JButton buttonBack = new JButton("<");
+		buttonBack.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		buttonBack.setForeground(Color.GREEN);
+		buttonBack.setBackground(Color.BLACK);
 		buttonBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(entryField.getText() != null) {
@@ -195,9 +235,9 @@ public class keyPad extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(button4, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-							.addGap(14)
-							.addComponent(button5, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(button5, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+							.addGap(14)
 							.addComponent(button6, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addGroup(gl_contentPanel.createSequentialGroup()
@@ -217,7 +257,7 @@ public class keyPad extends JDialog {
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addComponent(lblField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblField, GroupLayout.PREFERRED_SIZE, 98, Short.MAX_VALUE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(entryField, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 									.addGap(8))
@@ -242,34 +282,34 @@ public class keyPad extends JDialog {
 							.addComponent(button3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 							.addComponent(button2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(button6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 						.addComponent(button4, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(button6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-							.addComponent(button5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(button5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(button7, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(button7, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addComponent(button8, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addComponent(button9, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(buttonPeriod, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(button9, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button8, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(buttonBack, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button0, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(Alignment.TRAILING, gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(buttonBack, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(button0, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(105, 105, 105));
+			buttonPane.setBackground(Color.BLACK);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+				okButton.setForeground(Color.GREEN);
+				okButton.setBackground(Color.BLACK);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						field = entryField.getText();
@@ -279,11 +319,25 @@ public class keyPad extends JDialog {
 				});
 				
 				JButton btnClear = new JButton("Clear");
+				btnClear.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+				btnClear.setForeground(Color.GREEN);
+				btnClear.setBackground(Color.BLACK);
 				btnClear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						entryField.setText("");
 					}
 				});
+				
+				JButton btnDefault = new JButton("Default");
+				btnDefault.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+				btnDefault.setForeground(Color.GREEN);
+				btnDefault.setBackground(Color.BLACK);
+				btnDefault.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						entryField.setText("default");
+					}
+				});
+				buttonPane.add(btnDefault);
 				buttonPane.add(btnClear);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);

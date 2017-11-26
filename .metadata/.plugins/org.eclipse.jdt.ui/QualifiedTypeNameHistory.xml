@@ -3,4 +3,5 @@
 <fullyQualifiedTypeName name="com.bensherman.rtlsdrdjava.tcpcli.TcpClient"/>
 <fullyQualifiedTypeName name="windowBuilder.views.ResponseListener"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager.LookAndFeelInfo"/>
 </qualifiedTypeNameHistroy>

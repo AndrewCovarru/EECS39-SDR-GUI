@@ -2,12 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="oversample" key="selection"/>
+		<item value="cwruGray" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="new Color(0, 0, 0)"/>
+			<item value="color.Black"/>
+			<item value="color.Green"/>
+			<item value="ppmDisplay"/>
+			<item value="Color.White"/>
+			<item value="WHITE"/>
+			<item value="green"/>
 			<item value="oversample"/>
 			<item value="delayDisplay"/>
 			<item value="keyPad"/>
@@ -16,15 +23,11 @@
 			<item value="execue"/>
 			<item value="sampleRate"/>
 			<item value="JSpinner"/>
-			<item value="JComboBox"/>
-			<item value="modeMode"/>
-			<item value="modMode"/>
-			<item value="updateField"/>
-			<item value="oversampling"/>
-			<item value="ppm"/>
-			<item value="JFormattedTextField"/>
 		</list>
 		<list key="replacehistory">
+			<item value="cwruGray"/>
+			<item value="cwruBlue"/>
+			<item value="Color.GREEN"/>
 			<item value="field"/>
 			<item value="Field"/>
 			<item value="entryField"/>
@@ -37,16 +40,13 @@
 			<item value="samplerateKeyPad"/>
 			<item value="scannableField"/>
 			<item value="scannableFrequency"/>
-			<item value="scannablefrequencyKeyPad"/>
-			<item value="samplerateField"/>
-			<item value="ppmField"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="1169" key="DIALOG_X_ORIGIN"/>
-		<item value="194" key="DIALOG_Y_ORIGIN"/>
+		<item value="1374" key="DIALOG_X_ORIGIN"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<add id="laf_1511639383749" name="Acryl" class-name="com.jtattoo.plaf.acryl.AcrylLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383764" name="Aero" class-name="com.jtattoo.plaf.aero.AeroLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383770" name="Aluminium" class-name="com.jtattoo.plaf.aluminium.AluminiumLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383800" name="Bernstein" class-name="com.jtattoo.plaf.bernstein.BernsteinLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383807" name="Fast" class-name="com.jtattoo.plaf.fast.FastLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383814" name="Graphite" class-name="com.jtattoo.plaf.graphite.GraphiteLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383820" name="HiFi" class-name="com.jtattoo.plaf.hifi.HiFiLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383829" name="Luna" class-name="com.jtattoo.plaf.luna.LunaLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383835" name="McWin" class-name="com.jtattoo.plaf.mcwin.McWinLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383842" name="Mint" class-name="com.jtattoo.plaf.mint.MintLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383845" name="Noire" class-name="com.jtattoo.plaf.noire.NoireLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383848" name="Smart" class-name="com.jtattoo.plaf.smart.SmartLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+	<add id="laf_1511639383855" name="Texture" class-name="com.jtattoo.plaf.texture.TextureLookAndFeel" jar-path="C:\Users\Andrew Covarrubias\Downloads\JTattoo-1.6.11.jar" category-id="__wbp_laf_root"/>
+</commands>
