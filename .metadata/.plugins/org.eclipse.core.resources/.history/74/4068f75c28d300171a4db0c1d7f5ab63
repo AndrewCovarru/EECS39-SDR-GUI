@@ -360,6 +360,51 @@ public class homeScreen extends JFrame {
 		 * Contains all of the JSliders used throughout
 		 */
 		
+		//Gain
+		JSlider gainSlider = new JSlider();
+		gainSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		gainSlider.setMaximum(50);
+		gainSlider.setValue(0);
+		gain = Integer.toString(gainSlider.getValue());
+		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
+		gainSlider.setBackground(new Color(105, 105, 105));
+		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		gainSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				gain = Integer.toString(gainSlider.getValue());
+			}
+		});
+		
+		//Volume
+		JSlider volSlider = new JSlider();
+		volSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
+		volSlider.setMaximum(100);
+		volSlider.setValue(0);
+		volume = Integer.toString(volSlider.getValue());
+		volSlider.setBackground(new Color(105, 105, 105));
+		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		volSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				volume = Integer.toString(volSlider.getValue());
+			}
+		});
+		
+		//Squelch
+		JSlider squSlider = new JSlider();
+		squSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		squSlider.setMaximum(500);
+		squSlider.setValue(0);
+		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
+		squelch = Integer.toString(squSlider.getValue());
+		squSlider.setBackground(new Color(105, 105, 105));
+		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		squSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				squelch = Integer.toString(squSlider.getValue());
+			}
+		});
+		
 		JLabel volLabel = new JLabel("Volume: " + volume);
 		volLabel.setForeground(Color.GREEN);
 		volLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
@@ -371,62 +416,6 @@ public class homeScreen extends JFrame {
 		JLabel squLabel = new JLabel("Squelch: " + volume);
 		squLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 30));
 		squLabel.setForeground(Color.GREEN);
-		
-		//Gain
-		JSlider gainSlider = new JSlider();
-		gainSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		gainSlider.setMaximum(50);
-		gainSlider.setValue(0);
-		gain = Integer.toString(gainSlider.getValue());
-		gainLabel.setText("Gain: " + gain);
-		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
-		gainSlider.setBackground(new Color(105, 105, 105));
-		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		gainSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				if(gainSlider.getValueIsAdjusting()) {
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
-				}
-				else
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
-			}
-		});
-		
-		//Volume
-		JSlider volSlider = new JSlider();
-		volSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
-		volSlider.setMaximum(100);
-		volSlider.setValue(0);
-		volume = Integer.toString(volSlider.getValue());
-		volLabel.setText("Volume: " + volume);
-		volSlider.setBackground(new Color(105, 105, 105));
-		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		volSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				volume = Integer.toString(volSlider.getValue());
-				volLabel.setText("Volume: " + volume);
-			}
-		});
-		
-		//Squelch
-		JSlider squSlider = new JSlider();
-		squSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		squSlider.setMaximum(500);
-		squSlider.setValue(0);
-		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
-		squelch = Integer.toString(squSlider.getValue());
-		squLabel.setText("Squelch: " + squelch);
-		squSlider.setBackground(new Color(105, 105, 105));
-		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
-		squSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				squelch = Integer.toString(squSlider.getValue());
-				squLabel.setText("Squelch: " + squelch);
-			}
-		});
 		
 		/*
 		 * Contains all of the JRadioButtons used throughout

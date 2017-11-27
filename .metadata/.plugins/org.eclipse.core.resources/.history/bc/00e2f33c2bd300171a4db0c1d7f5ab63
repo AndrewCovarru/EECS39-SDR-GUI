@@ -384,13 +384,8 @@ public class homeScreen extends JFrame {
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				if(gainSlider.getValueIsAdjusting()) {
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
-				}
-				else
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
+				gain = Integer.toString(gainSlider.getValue());
+				gainLabel.setText("Gain: " + gain);
 			}
 		});
 		

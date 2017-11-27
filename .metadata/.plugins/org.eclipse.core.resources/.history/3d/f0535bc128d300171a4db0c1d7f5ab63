@@ -378,19 +378,13 @@ public class homeScreen extends JFrame {
 		gainSlider.setMaximum(50);
 		gainSlider.setValue(0);
 		gain = Integer.toString(gainSlider.getValue());
-		gainLabel.setText("Gain: " + gain);
 		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.setBackground(new Color(105, 105, 105));
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				if(gainSlider.getValueIsAdjusting()) {
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
-				}
-				else
-					gain = Integer.toString(gainSlider.getValue());
-					gainLabel.setText("Gain: " + gain);
+				gain = Integer.toString(gainSlider.getValue());
+				gainLabel.setText("Gain: " + gain);
 			}
 		});
 		
@@ -401,7 +395,6 @@ public class homeScreen extends JFrame {
 		volSlider.setMaximum(100);
 		volSlider.setValue(0);
 		volume = Integer.toString(volSlider.getValue());
-		volLabel.setText("Volume: " + volume);
 		volSlider.setBackground(new Color(105, 105, 105));
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		volSlider.addChangeListener(new ChangeListener() {
@@ -418,7 +411,6 @@ public class homeScreen extends JFrame {
 		squSlider.setValue(0);
 		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
 		squelch = Integer.toString(squSlider.getValue());
-		squLabel.setText("Squelch: " + squelch);
 		squSlider.setBackground(new Color(105, 105, 105));
 		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		squSlider.addChangeListener(new ChangeListener() {
