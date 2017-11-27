@@ -364,7 +364,6 @@ public class homeScreen extends JFrame {
 		//Gain
 		JSlider gainSlider = new JSlider();
 		gainSlider.setMaximum(50);
-		gain = Integer.toString(gainSlider.getValue());
 		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.setBackground(new Color(105, 105, 105));
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
@@ -377,8 +376,7 @@ public class homeScreen extends JFrame {
 		//Volume
 		JSlider volSlider = new JSlider();
 		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
-		volSlider.setMaximum(100);
-		volume = Integer.toString(volSlider.getValue());
+		volSlider.setValue(100);
 		volSlider.setBackground(new Color(105, 105, 105));
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		volSlider.addChangeListener(new ChangeListener() {
@@ -391,7 +389,7 @@ public class homeScreen extends JFrame {
 		JSlider squSlider = new JSlider();
 		squSlider.setMaximum(500);
 		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
-		squelch = Integer.toString(squSlider.getValue());
+		squSlider.setValue(50);
 		squSlider.setBackground(new Color(105, 105, 105));
 		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		squSlider.addChangeListener(new ChangeListener() {
@@ -499,7 +497,6 @@ public class homeScreen extends JFrame {
 		oversampleDrop.setForeground(Color.GREEN);
 		oversampleDrop.setMaximumRowCount(5);
 		oversampleDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "1", "2", "3", "4"}));
-		overSampling = oversampleDrop.getSelectedItem().toString();
 		Parameters.OVERSAMPLING.setUiMembers(oversampleDrop, oversampleDrop.getClass());
 		oversampleDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -609,7 +606,7 @@ public class homeScreen extends JFrame {
 				Parameters.MODULATION_MODE.append(modulationMode);
 				
 				System.out.println("Oversampling: " + overSampling);
-				Parameters.OVERSAMPLING.append(overSampling);
+				//Parameters.OVERSAMPLING.append(overSampling);
 				
 				System.out.println("PPM Error: " + ppmError);
 				Parameters.PPM_ERROR.append(ppmError);

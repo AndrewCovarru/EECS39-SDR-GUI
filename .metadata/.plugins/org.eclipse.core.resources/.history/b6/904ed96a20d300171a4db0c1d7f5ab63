@@ -168,7 +168,7 @@ public class homeScreen extends JFrame {
 		ipDisplay.setBackground(new Color(0, 0, 0));
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -364,7 +364,6 @@ public class homeScreen extends JFrame {
 		//Gain
 		JSlider gainSlider = new JSlider();
 		gainSlider.setMaximum(50);
-		gain = Integer.toString(gainSlider.getValue());
 		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.setBackground(new Color(105, 105, 105));
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
@@ -377,8 +376,7 @@ public class homeScreen extends JFrame {
 		//Volume
 		JSlider volSlider = new JSlider();
 		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
-		volSlider.setMaximum(100);
-		volume = Integer.toString(volSlider.getValue());
+		volSlider.setValue(100);
 		volSlider.setBackground(new Color(105, 105, 105));
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		volSlider.addChangeListener(new ChangeListener() {
@@ -391,7 +389,7 @@ public class homeScreen extends JFrame {
 		JSlider squSlider = new JSlider();
 		squSlider.setMaximum(500);
 		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
-		squelch = Integer.toString(squSlider.getValue());
+		squSlider.setValue(50);
 		squSlider.setBackground(new Color(105, 105, 105));
 		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		squSlider.addChangeListener(new ChangeListener() {
@@ -467,7 +465,6 @@ public class homeScreen extends JFrame {
 		firDrop.setMaximumRowCount(3);
 		firDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "0", "9"}));
 		firDrop.setSelectedIndex(0);
-		firSize = firDrop.getSelectedItem().toString();
 		Parameters.FIR_SIZE.setUiMembers(firDrop, firDrop.getClass());
 		firDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -482,9 +479,7 @@ public class homeScreen extends JFrame {
 		atanMathDrop.setBackground(new Color(0, 0, 0));
 		atanMathDrop.setForeground(Color.GREEN);
 		atanMathDrop.setModel(new DefaultComboBoxModel(new String[] {"std", "fast", "lut"}));
-		atanMathDrop.setSelectedIndex(0);
 		atanMathDrop.setMaximumRowCount(3);
-		atanMath = atanMathDrop.getSelectedItem().toString();
 		Parameters.ATAN_MATH.setUiMembers(atanMathDrop, atanMathDrop.getClass());
 		atanMathDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -499,7 +494,6 @@ public class homeScreen extends JFrame {
 		oversampleDrop.setForeground(Color.GREEN);
 		oversampleDrop.setMaximumRowCount(5);
 		oversampleDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "1", "2", "3", "4"}));
-		overSampling = oversampleDrop.getSelectedItem().toString();
 		Parameters.OVERSAMPLING.setUiMembers(oversampleDrop, oversampleDrop.getClass());
 		oversampleDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -583,6 +577,8 @@ public class homeScreen extends JFrame {
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Atan Math: " + atanMath);
+				Parameters.ATAN_MATH.append(atanMath);
 				
 				//Checks each of the radio buttons
 				if(rdbtnEDGE.isSelected())
@@ -596,9 +592,6 @@ public class homeScreen extends JFrame {
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				
-				System.out.println("Atan Math: " + atanMath);
-				Parameters.ATAN_MATH.append(atanMath);
-				
 				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
 				
@@ -609,7 +602,7 @@ public class homeScreen extends JFrame {
 				Parameters.MODULATION_MODE.append(modulationMode);
 				
 				System.out.println("Oversampling: " + overSampling);
-				Parameters.OVERSAMPLING.append(overSampling);
+				//Parameters.OVERSAMPLING.append(overSampling);
 				
 				System.out.println("PPM Error: " + ppmError);
 				Parameters.PPM_ERROR.append(ppmError);
@@ -620,7 +613,7 @@ public class homeScreen extends JFrame {
 				System.out.println("Sample Rate: " + sampleRate);
 				Parameters.SAMPLE_RATE.append(sampleRate);
 				
-				//System.out.println("Scannable Frequency: " + scannableFrequency);
+				System.out.println("Scannable Frequency: " + scannableFrequency);
 				//Parameters.SCANNABLE_FREQUENCY.append(scannableFrequency);
 				
 				System.out.println("Squelch Delay: " + squelchDelay);
@@ -633,7 +626,7 @@ public class homeScreen extends JFrame {
 				//Parameters.TUNER_GAIN.append(gain);
 				
 				System.out.println("Volume:" + volume);
-				//Parameters.VOLUME.append(volume);
+				Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
 		        {

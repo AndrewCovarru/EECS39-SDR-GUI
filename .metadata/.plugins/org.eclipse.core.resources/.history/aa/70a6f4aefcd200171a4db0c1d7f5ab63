@@ -124,7 +124,7 @@ public class homeScreen extends JFrame {
 		
 		//Frequency
 		JFormattedTextField freqDisplay = 	new JFormattedTextField();
-		freqDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		freqDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		freqDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 60));
 		freqDisplay.setEditable(false);
 		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
@@ -164,18 +164,19 @@ public class homeScreen extends JFrame {
 		
 		//IP Address
 		JFormattedTextField ipDisplay = new JFormattedTextField();
-		ipDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		ipDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		ipDisplay.setBackground(new Color(0, 0, 0));
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				keyPad ipKeyPad = new keyPad("IP Address:", ipDisplay.getText());
 				ipKeyPad.setVisible(true);
-				ipKeyPad.addWindowListener(new WindowListener() {
+				
+				 ipKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
 			                ipDisplay.setText(ipKeyPad.returnField());
 			            	 try {
@@ -211,7 +212,7 @@ public class homeScreen extends JFrame {
 		
 		//PPM Error
 		JFormattedTextField ppmDisplay = new JFormattedTextField();
-		ppmDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		ppmDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		ppmDisplay.setBackground(new Color(0, 0, 0));
 		ppmDisplay.setForeground(Color.GREEN);
 		ppmDisplay.setEditable(false);
@@ -248,7 +249,7 @@ public class homeScreen extends JFrame {
 		
 		//Resample Rate 
 		JFormattedTextField resampleDisplay = new JFormattedTextField();
-		resampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		resampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		resampleDisplay.setBackground(new Color(0, 0, 0));
 		resampleDisplay.setForeground(Color.GREEN);
 		resampleDisplay.setEditable(false);
@@ -285,7 +286,7 @@ public class homeScreen extends JFrame {
 		
 		//Sample Rate
 		JFormattedTextField sampleDisplay = new JFormattedTextField();
-		sampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		sampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		sampleDisplay.setBackground(new Color(0, 0, 0));
 		sampleDisplay.setForeground(Color.GREEN);
 		sampleDisplay.setEditable(false);
@@ -321,7 +322,7 @@ public class homeScreen extends JFrame {
 		
 		//Squelch Delay
 		JFormattedTextField delayDisplay = new JFormattedTextField();
-		delayDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		delayDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		delayDisplay.setBackground(new Color(0, 0, 0));
 		delayDisplay.setForeground(Color.GREEN);
 		delayDisplay.setEditable(false);
@@ -364,7 +365,6 @@ public class homeScreen extends JFrame {
 		//Gain
 		JSlider gainSlider = new JSlider();
 		gainSlider.setMaximum(50);
-		gain = Integer.toString(gainSlider.getValue());
 		Parameters.TUNER_GAIN.setUiMembers(gainSlider, gainSlider.getClass());
 		gainSlider.setBackground(new Color(105, 105, 105));
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
@@ -377,8 +377,7 @@ public class homeScreen extends JFrame {
 		//Volume
 		JSlider volSlider = new JSlider();
 		Parameters.VOLUME.setUiMembers(volSlider, volSlider.getClass());
-		volSlider.setMaximum(100);
-		volume = Integer.toString(volSlider.getValue());
+		volSlider.setValue(100);
 		volSlider.setBackground(new Color(105, 105, 105));
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		volSlider.addChangeListener(new ChangeListener() {
@@ -391,7 +390,7 @@ public class homeScreen extends JFrame {
 		JSlider squSlider = new JSlider();
 		squSlider.setMaximum(500);
 		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
-		squelch = Integer.toString(squSlider.getValue());
+		squSlider.setValue(0);
 		squSlider.setBackground(new Color(105, 105, 105));
 		squSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		squSlider.addChangeListener(new ChangeListener() {
@@ -442,8 +441,7 @@ public class homeScreen extends JFrame {
         
         //Modulation Mode
         JComboBox<String> modMode = new JComboBox<>();
-        modMode.setFocusable(false);
-        modMode.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+        modMode.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
         modMode.setBackground(new Color(0, 0, 0));
         modMode.setForeground(Color.GREEN);
 		modMode.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
@@ -460,14 +458,12 @@ public class homeScreen extends JFrame {
 		
 		//FIR Size
 		JComboBox<String> firDrop = new JComboBox<>();
-		firDrop.setFocusable(false);
-		firDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		firDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		firDrop.setBackground(new Color(0, 0, 0));
 		firDrop.setForeground(Color.GREEN);
 		firDrop.setMaximumRowCount(3);
 		firDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "0", "9"}));
 		firDrop.setSelectedIndex(0);
-		firSize = firDrop.getSelectedItem().toString();
 		Parameters.FIR_SIZE.setUiMembers(firDrop, firDrop.getClass());
 		firDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -478,13 +474,11 @@ public class homeScreen extends JFrame {
 		//Atan Math
 		JComboBox<String> atanMathDrop = new JComboBox<>();
 		atanMathDrop.setFocusable(false);
-		atanMathDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		atanMathDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		atanMathDrop.setBackground(new Color(0, 0, 0));
 		atanMathDrop.setForeground(Color.GREEN);
 		atanMathDrop.setModel(new DefaultComboBoxModel(new String[] {"std", "fast", "lut"}));
-		atanMathDrop.setSelectedIndex(0);
 		atanMathDrop.setMaximumRowCount(3);
-		atanMath = atanMathDrop.getSelectedItem().toString();
 		Parameters.ATAN_MATH.setUiMembers(atanMathDrop, atanMathDrop.getClass());
 		atanMathDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -493,13 +487,11 @@ public class homeScreen extends JFrame {
 		});
 		
 		JComboBox<String> oversampleDrop = new JComboBox<>();
-		oversampleDrop.setFocusable(false);
-		oversampleDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		oversampleDrop.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		oversampleDrop.setBackground(new Color(0, 0, 0));
 		oversampleDrop.setForeground(Color.GREEN);
 		oversampleDrop.setMaximumRowCount(5);
 		oversampleDrop.setModel(new DefaultComboBoxModel(new String[] {"default", "1", "2", "3", "4"}));
-		overSampling = oversampleDrop.getSelectedItem().toString();
 		Parameters.OVERSAMPLING.setUiMembers(oversampleDrop, oversampleDrop.getClass());
 		oversampleDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -514,7 +506,7 @@ public class homeScreen extends JFrame {
 		
 		//Stop
 		JButton stopButton = new JButton("Stop");
-		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		stopButton.setForeground(Color.GREEN);
 		stopButton.setBackground(Color.BLACK);
 		stopButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
@@ -525,7 +517,7 @@ public class homeScreen extends JFrame {
 		});
 		
 		JButton defaultButton = new JButton("Defaults");
-		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		defaultButton.setBackground(Color.BLACK);
 		defaultButton.setForeground(Color.GREEN);
 		defaultButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
@@ -577,12 +569,14 @@ public class homeScreen extends JFrame {
                 
         //Execute
 		JButton btnExecute = new JButton("Execute");
-		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0), new Color(0, 255, 0)));
 		btnExecute.setBackground(Color.BLACK);
 		btnExecute.setForeground(Color.GREEN);
 		btnExecute.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		btnExecute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Atan Math: " + atanMath);
+				Parameters.ATAN_MATH.append(atanMath);
 				
 				//Checks each of the radio buttons
 				if(rdbtnEDGE.isSelected())
@@ -595,9 +589,6 @@ public class homeScreen extends JFrame {
 					Parameters.ENABLE_OPTION.append("direct");
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
-				
-				System.out.println("Atan Math: " + atanMath);
-				Parameters.ATAN_MATH.append(atanMath);
 				
 				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
@@ -620,20 +611,20 @@ public class homeScreen extends JFrame {
 				System.out.println("Sample Rate: " + sampleRate);
 				Parameters.SAMPLE_RATE.append(sampleRate);
 				
-				//System.out.println("Scannable Frequency: " + scannableFrequency);
-				//Parameters.SCANNABLE_FREQUENCY.append(scannableFrequency);
+				System.out.println("Scannable Frequency: " + scannableFrequency);
+				Parameters.SCANNABLE_FREQUENCY.append(scannableFrequency);
 				
 				System.out.println("Squelch Delay: " + squelchDelay);
 				Parameters.SQUELCH_DELAY.append(squelchDelay);
 				
 				System.out.println("Squelch: " + squelch);
-				//Parameters.SQUELCH_LEVEL.append(squelch);
+				Parameters.SQUELCH_LEVEL.append(squelch);
 				
 				System.out.println("Gain: "+ gain);
-				//Parameters.TUNER_GAIN.append(gain);
+				Parameters.TUNER_GAIN.append(gain);
 				
 				System.out.println("Volume:" + volume);
-				//Parameters.VOLUME.append(volume);
+				Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
 		        {
