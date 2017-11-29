@@ -408,6 +408,18 @@ public class homeScreen extends JFrame {
 			public void stateChanged(ChangeEvent arg0) {
 				volume = Integer.toString(volSlider.getValue());
 				volLabel.setText("Volume: " + volume);
+				
+				Parameters.VOLUME.append(volume);
+				
+				for (Parameters p : Parameters.values())
+		        {
+		            for(String s : p.getDameonCallableStrings()){
+
+		                tcpClient.sendToServer(s);
+		            }
+		            p.resetValues();
+		        }
+				tcpClient.sendToServer("EXECUTE");
 			}
 		});
 		

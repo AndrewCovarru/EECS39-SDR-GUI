@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="cwruGray" key="selection"/>
+		<item value="Squelch" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="squelch"/>
+			<item value="new Color(0, 255, 0)"/>
+			<item value="render"/>
 			<item value="new Color(0, 0, 0)"/>
 			<item value="color.Black"/>
 			<item value="color.Green"/>
@@ -20,14 +23,11 @@
 			<item value="keyPad"/>
 			<item value="defaults"/>
 			<item value="execute"/>
-			<item value="execue"/>
-			<item value="sampleRate"/>
-			<item value="JSpinner"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Color.GREEN"/>
 			<item value="cwruGray"/>
 			<item value="cwruBlue"/>
-			<item value="Color.GREEN"/>
 			<item value="field"/>
 			<item value="Field"/>
 			<item value="entryField"/>
