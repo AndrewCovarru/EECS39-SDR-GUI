@@ -210,7 +210,6 @@ public class homeScreen extends JFrame {
 		
 		//PPM Error
 		JFormattedTextField ppmDisplay = new JFormattedTextField();
-		ppmDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ppmDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		ppmDisplay.setBackground(new Color(0, 0, 0));
 		ppmDisplay.setForeground(Color.GREEN);
@@ -248,7 +247,6 @@ public class homeScreen extends JFrame {
 		
 		//Resample Rate 
 		JFormattedTextField resampleDisplay = new JFormattedTextField();
-		resampleDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		resampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		resampleDisplay.setBackground(new Color(0, 0, 0));
 		resampleDisplay.setForeground(Color.GREEN);
@@ -286,7 +284,6 @@ public class homeScreen extends JFrame {
 		
 		//Sample Rate
 		JFormattedTextField sampleDisplay = new JFormattedTextField();
-		sampleDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		sampleDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		sampleDisplay.setBackground(new Color(0, 0, 0));
 		sampleDisplay.setForeground(Color.GREEN);
@@ -323,7 +320,6 @@ public class homeScreen extends JFrame {
 		
 		//Squelch Delay
 		JFormattedTextField delayDisplay = new JFormattedTextField();
-		delayDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		delayDisplay.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		delayDisplay.setBackground(new Color(0, 0, 0));
 		delayDisplay.setForeground(Color.GREEN);
@@ -388,6 +384,11 @@ public class homeScreen extends JFrame {
 		gainSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		gainSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				if(gainSlider.getValueIsAdjusting()) {
+					gain = Integer.toString(gainSlider.getValue());
+					gainLabel.setText("Gain: " + gain);
+				}
+				else
 					gain = Integer.toString(gainSlider.getValue());
 					gainLabel.setText("Gain: " + gain);
 			}
@@ -408,17 +409,17 @@ public class homeScreen extends JFrame {
 				volume = Integer.toString(volSlider.getValue());
 				volLabel.setText("Volume: " + volume);
 				
-				//Parameters.VOLUME.append(volume);
+				Parameters.VOLUME.append(volume);
 				
-				//for (Parameters p : Parameters.values())
-		        //{
-		          //  for(String s : p.getDameonCallableStrings()){
+				for (Parameters p : Parameters.values())
+		        {
+		            for(String s : p.getDameonCallableStrings()){
 
-		            //    tcpClient.sendToServer(s);
-		            //}
-		            //p.resetValues();
-		        //}
-				//tcpClient.sendToServer("EXECUTE");
+		                tcpClient.sendToServer(s);
+		            }
+		            p.resetValues();
+		        }
+				tcpClient.sendToServer("EXECUTE");
 			}
 		});
 		
@@ -666,13 +667,13 @@ public class homeScreen extends JFrame {
 				Parameters.SQUELCH_DELAY.append(squelchDelay);
 				
 				System.out.println("Squelch: " + squelch);
-				Parameters.SQUELCH_LEVEL.append(squelch);
+				//Parameters.SQUELCH_LEVEL.append(squelch);
 				
 				System.out.println("Gain: "+ gain);
-				Parameters.TUNER_GAIN.append(gain);
+				//Parameters.TUNER_GAIN.append(gain);
 				
 				System.out.println("Volume:" + volume);
-				Parameters.VOLUME.append(volume);
+				//Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
 		        {

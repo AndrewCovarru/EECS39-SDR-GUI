@@ -666,13 +666,13 @@ public class homeScreen extends JFrame {
 				Parameters.SQUELCH_DELAY.append(squelchDelay);
 				
 				System.out.println("Squelch: " + squelch);
-				Parameters.SQUELCH_LEVEL.append(squelch);
+				//Parameters.SQUELCH_LEVEL.append(squelch);
 				
 				System.out.println("Gain: "+ gain);
-				Parameters.TUNER_GAIN.append(gain);
+				//Parameters.TUNER_GAIN.append(gain);
 				
 				System.out.println("Volume:" + volume);
-				Parameters.VOLUME.append(volume);
+				//Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
 		        {

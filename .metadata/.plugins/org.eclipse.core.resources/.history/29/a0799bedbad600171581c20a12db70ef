@@ -68,7 +68,6 @@ public class keyPad extends JDialog {
 		
 		JButton button2 = new JButton("2");
 		button2.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		button2.setForeground(Color.GREEN);
 		button2.setBackground(Color.BLACK);
 		button2.addActionListener(new ActionListener() {
@@ -79,11 +78,11 @@ public class keyPad extends JDialog {
 					entryField.setText(entryField.getText() + "2");
 			}
 		});
+		button2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 
 		
 		JButton button3 = new JButton("3");
 		button3.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		button3.setForeground(Color.GREEN);
 		button3.setBackground(Color.BLACK);
 		button3.addActionListener(new ActionListener() {
@@ -94,10 +93,11 @@ public class keyPad extends JDialog {
 					entryField.setText(entryField.getText() + "3");
 			}
 		});
+		button3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
 		
 		JButton button4 = new JButton("4");
 		button4.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button4.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		button4.setForeground(Color.GREEN);
 		button4.setBackground(Color.BLACK);
 		button4.addActionListener(new ActionListener() {
@@ -108,38 +108,11 @@ public class keyPad extends JDialog {
 					entryField.setText(entryField.getText() + "4");
 			}
 		});
-		
-		JButton button5 = new JButton("5");
-		button5.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button5.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		button5.setForeground(Color.GREEN);
-		button5.setBackground(Color.BLACK);
-		button5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(entryField.getText() == null)
-					entryField.setText("5");
-				else
-					entryField.setText(entryField.getText() + "5");
-			}
-		});
-		
-		JButton button6 = new JButton("6");
-		button6.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		button6.setForeground(Color.GREEN);
-		button6.setBackground(Color.BLACK);
-		button6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(entryField.getText() == null)
-					entryField.setText("6");
-				else
-					entryField.setText(entryField.getText() + "6");
-			}
-		});
+		button4.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
 		
 		JButton button7 = new JButton("7");
 		button7.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button7.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		button7.setForeground(Color.GREEN);
 		button7.setBackground(Color.BLACK);
 		button7.addActionListener(new ActionListener() {
@@ -150,52 +123,10 @@ public class keyPad extends JDialog {
 					entryField.setText(entryField.getText() + "7");
 			}
 		});
-		
-		JButton button8 = new JButton("8");
-		button8.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button8.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		button8.setForeground(Color.GREEN);
-		button8.setBackground(Color.BLACK);
-		button8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(entryField.getText() == null)
-					entryField.setText("8");
-				else
-					entryField.setText(entryField.getText() + "8");
-			}
-		});
-		
-		JButton button9 = new JButton("9");
-		button9.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button9.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		button9.setForeground(Color.GREEN);
-		button9.setBackground(Color.BLACK);
-		button9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(entryField.getText() == null)
-					entryField.setText("9");
-				else
-					entryField.setText(entryField.getText() + "9");
-			}
-		});
-		
-		JButton button0 = new JButton("0");
-		button0.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		button0.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		button0.setForeground(Color.GREEN);
-		button0.setBackground(Color.BLACK);
-		button0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(entryField.getText() == null)
-					entryField.setText("0");
-				else
-					entryField.setText(entryField.getText() + "0");
-			}
-		});
+		button7.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		
 		JButton buttonPeriod = new JButton(".");
 		buttonPeriod.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		buttonPeriod.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		buttonPeriod.setForeground(Color.GREEN);
 		buttonPeriod.setBackground(Color.BLACK);
 		buttonPeriod.addActionListener(new ActionListener() {
@@ -208,10 +139,86 @@ public class keyPad extends JDialog {
 				
 			}
 		});
-				
+		buttonPeriod.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
+		JButton button5 = new JButton("5");
+		button5.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button5.setForeground(Color.GREEN);
+		button5.setBackground(Color.BLACK);
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(entryField.getText() == null)
+					entryField.setText("5");
+				else
+					entryField.setText(entryField.getText() + "5");
+			}
+		});
+		button5.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
+		JButton button8 = new JButton("8");
+		button8.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button8.setForeground(Color.GREEN);
+		button8.setBackground(Color.BLACK);
+		button8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(entryField.getText() == null)
+					entryField.setText("8");
+				else
+					entryField.setText(entryField.getText() + "8");
+			}
+		});
+		button8.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
+		JButton button0 = new JButton("0");
+		button0.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button0.setForeground(Color.GREEN);
+		button0.setBackground(Color.BLACK);
+		button0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(entryField.getText() == null)
+					entryField.setText("0");
+				else
+					entryField.setText(entryField.getText() + "0");
+			}
+		});
+		button0.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
+		JButton button6 = new JButton("6");
+		button6.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button6.setForeground(Color.GREEN);
+		button6.setBackground(Color.BLACK);
+		button6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(entryField.getText() == null)
+					entryField.setText("6");
+				else
+					entryField.setText(entryField.getText() + "6");
+			}
+		});
+		button6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
+		JButton button9 = new JButton("9");
+		button9.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
+		button9.setForeground(Color.GREEN);
+		button9.setBackground(Color.BLACK);
+		button9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(entryField.getText() == null)
+					entryField.setText("9");
+				else
+					entryField.setText(entryField.getText() + "9");
+			}
+		});
+		button9.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+		
 		JButton buttonBack = new JButton("<");
 		buttonBack.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		buttonBack.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		buttonBack.setForeground(Color.GREEN);
 		buttonBack.setBackground(Color.BLACK);
 		buttonBack.addActionListener(new ActionListener() {
@@ -223,8 +230,7 @@ public class keyPad extends JDialog {
 				}
 			}
 		});
-		
-
+		buttonBack.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
 		{
 			buttonPane = new JPanel();
 			buttonPane.setBackground(Color.BLACK);
