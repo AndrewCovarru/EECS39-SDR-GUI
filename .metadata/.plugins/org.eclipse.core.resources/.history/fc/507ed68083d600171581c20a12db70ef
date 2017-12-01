@@ -757,6 +757,10 @@ public class homeScreen extends JFrame {
 		lblSquelchDelay.setLabelFor(ipDisplay);
 		lblSquelchDelay.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSquelchDelay.setLabelFor(delayDisplay);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(Color.BLACK);
+		separator.setOrientation(SwingConstants.VERTICAL);
 				
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -775,9 +779,13 @@ public class homeScreen extends JFrame {
 								.addComponent(volSlider, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
 							.addGap(18))
 						.addComponent(gainLabel, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE))
-					.addGap(14)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(ipDisplay, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+							.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -796,16 +804,13 @@ public class homeScreen extends JFrame {
 														.addComponent(rdbtnEDGE))))
 											.addGroup(gl_contentPane.createSequentialGroup()
 												.addGap(2)
+												.addComponent(lblFirsize))
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addGap(2)
 												.addComponent(lblOversampling))
 											.addGroup(gl_contentPane.createSequentialGroup()
 												.addGap(2)
-												.addComponent(lblSampleRate))
-											.addGroup(gl_contentPane.createSequentialGroup()
-												.addGap(2)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-													.addComponent(lblFirsize)
-													.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-												.addGap(27)))
+												.addComponent(lblSampleRate)))
 										.addComponent(oversampleDrop, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
@@ -840,8 +845,8 @@ public class homeScreen extends JFrame {
 												.addGroup(gl_contentPane.createSequentialGroup()
 													.addGap(83)
 													.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addComponent(modMode, Alignment.TRAILING, 0, 95, Short.MAX_VALUE)
-														.addComponent(atanMathDrop, 0, 95, Short.MAX_VALUE)))
+														.addComponent(modMode, Alignment.TRAILING, 0, 103, Short.MAX_VALUE)
+														.addComponent(atanMathDrop, 0, 103, Short.MAX_VALUE)))
 												.addComponent(lblModulation)))))
 								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 									.addComponent(lblIPA)
@@ -854,7 +859,6 @@ public class homeScreen extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(freqDisplay, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -871,11 +875,12 @@ public class homeScreen extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSampleRate)
 								.addComponent(lblPpmError))
-							.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblModulation)
 								.addComponent(lblFirsize)))
-						.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+						.addComponent(sampleDisplay, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ppmDisplay, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -894,7 +899,7 @@ public class homeScreen extends JFrame {
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 										.addComponent(lblAtanMath)
 										.addComponent(lblOversampling))))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(7)
 									.addComponent(atanMathDrop, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
@@ -925,6 +930,7 @@ public class homeScreen extends JFrame {
 								.addComponent(defaultButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 								.addComponent(stopButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap())
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
