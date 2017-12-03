@@ -112,6 +112,21 @@ public class homeScreen extends JFrame {
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		try {
+		 	tcpClient = new TcpClient("172.19.35.95", TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+            tcpClientThread = new Thread(tcpClient);
+            tcpClientThread.start();
+            listener = new ResponseListener(tcpClient, instance);
+            listenerThread = new Thread(listener);
+            listenerThread.start();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		/*
 		 * All of the JFormattedTextFields used throughout
 		 */
@@ -163,7 +178,6 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("127.0.0.1");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -550,22 +564,6 @@ public class homeScreen extends JFrame {
 				overSampling = oversampleDrop.getSelectedItem().toString();
 			}
 		});
-		
-		try {
-		 	tcpClient = new TcpClient(ipDisplay.getText(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
-            tcpClientThread = new Thread(tcpClient);
-            tcpClientThread.start();
-            listener = new ResponseListener(tcpClient, instance);
-            listenerThread = new Thread(listener);
-            listenerThread.start();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
         
         
         /*
@@ -574,7 +572,6 @@ public class homeScreen extends JFrame {
 		
 		//Stop
 		JButton stopButton = new JButton("Stop");
-		stopButton.setFocusable(false);
 		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		stopButton.setForeground(Color.GREEN);
 		stopButton.setBackground(Color.BLACK);
@@ -586,7 +583,6 @@ public class homeScreen extends JFrame {
 		});
 		
 		JButton defaultButton = new JButton("Defaults");
-		defaultButton.setFocusable(false);
 		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		defaultButton.setBackground(Color.BLACK);
 		defaultButton.setForeground(Color.GREEN);
@@ -639,7 +635,6 @@ public class homeScreen extends JFrame {
                 
         //Execute
 		JButton btnExecute = new JButton("Execute");
-		btnExecute.setFocusable(false);
 		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		btnExecute.setBackground(Color.BLACK);
 		btnExecute.setForeground(Color.GREEN);

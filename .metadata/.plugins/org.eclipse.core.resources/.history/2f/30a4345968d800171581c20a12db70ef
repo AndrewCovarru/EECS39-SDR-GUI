@@ -163,7 +163,6 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("127.0.0.1");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -552,7 +551,7 @@ public class homeScreen extends JFrame {
 		});
 		
 		try {
-		 	tcpClient = new TcpClient(ipDisplay.getText(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+		 	tcpClient = new TcpClient("172.19.35.95", TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
             tcpClientThread = new Thread(tcpClient);
             tcpClientThread.start();
             listener = new ResponseListener(tcpClient, instance);
@@ -574,7 +573,6 @@ public class homeScreen extends JFrame {
 		
 		//Stop
 		JButton stopButton = new JButton("Stop");
-		stopButton.setFocusable(false);
 		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		stopButton.setForeground(Color.GREEN);
 		stopButton.setBackground(Color.BLACK);
@@ -586,7 +584,6 @@ public class homeScreen extends JFrame {
 		});
 		
 		JButton defaultButton = new JButton("Defaults");
-		defaultButton.setFocusable(false);
 		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		defaultButton.setBackground(Color.BLACK);
 		defaultButton.setForeground(Color.GREEN);
@@ -639,7 +636,6 @@ public class homeScreen extends JFrame {
                 
         //Execute
 		JButton btnExecute = new JButton("Execute");
-		btnExecute.setFocusable(false);
 		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		btnExecute.setBackground(Color.BLACK);
 		btnExecute.setForeground(Color.GREEN);

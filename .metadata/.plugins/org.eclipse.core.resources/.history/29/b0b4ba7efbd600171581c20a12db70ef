@@ -76,6 +76,10 @@ public class homeScreen extends JFrame {
 	private String gain;
 	private String volume;
 	
+	//Creates CWRU Blue & Gray
+	Color cwruBlue = new Color(10, 48, 78);
+	Color cwruGray = new Color (106, 106, 106);
+	
 	private static homeScreen instance;
 	
 	public static homeScreen getInstance()
@@ -112,6 +116,7 @@ public class homeScreen extends JFrame {
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
 		/*
 		 * All of the JFormattedTextFields used throughout
 		 */
@@ -163,7 +168,6 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("127.0.0.1");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -174,14 +178,12 @@ public class homeScreen extends JFrame {
 			            public void windowClosed(WindowEvent arg0) {
 			                ipDisplay.setText(ipKeyPad.returnField());
 			            	 try {
-			            		 	if(tcpClient == null) 
-			            	        {
-			            		 	tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
+			            	        tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
 					                tcpClientThread = new Thread(tcpClient);
 					                tcpClientThread.start();
 					                listener = new ResponseListener(tcpClient, instance);
 					                listenerThread = new Thread(listener);
-					                listenerThread.start();}
+					                listenerThread.start();
 								} catch (UnknownHostException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -403,22 +405,21 @@ public class homeScreen extends JFrame {
 		volSlider.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		volSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				if(volSlider.getValueIsAdjusting()) {
 				volume = Integer.toString(volSlider.getValue());
-				volLabel.setText("Volume: " + volume);
-				if(!volSlider.getValueIsAdjusting()) {
+				volLabel.setText("Volume: " + volume);}
 				
-				Parameters.VOLUME.append(volume);
+				//Parameters.VOLUME.append(volume);
 				
-				for (Parameters p : Parameters.values())
-		        {
-		            for(String s : p.getDameonCallableStrings()){
+				//for (Parameters p : Parameters.values())
+		        //{
+		          //  for(String s : p.getDameonCallableStrings()){
 
-		                tcpClient.sendToServer(s);
-		            }
-		            p.resetValues();
-		        }
-				tcpClient.sendToServer("EXECUTE");
-				}
+		            //    tcpClient.sendToServer(s);
+		            //}
+		            //p.resetValues();
+		        //}
+				//tcpClient.sendToServer("EXECUTE");
 			}
 		});
 		
@@ -445,35 +446,30 @@ public class homeScreen extends JFrame {
 		
 		//Edge
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
-		rdbtnEDGE.setFocusPainted(false);
 		rdbtnEDGE.setForeground(Color.GREEN);
 		rdbtnEDGE.setBackground(new Color(0, 0, 0));
 		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
 		//DC
 		JRadioButton rdbtnDC = new JRadioButton("dc");
-		rdbtnDC.setFocusPainted(false);
 		rdbtnDC.setBackground(new Color(0, 0, 0));
 		rdbtnDC.setForeground(Color.GREEN);
 	    enableOptionUiMatcher.add("dc", rdbtnDC);
 		
 	    //DEEMP
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
-		rdbtnDEEMP.setFocusPainted(false);
 		rdbtnDEEMP.setForeground(Color.GREEN);
 		rdbtnDEEMP.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("deemp", rdbtnDEEMP);
 		
         //Direct
 		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
-		rdbtnDIRECT.setFocusPainted(false);
 		rdbtnDIRECT.setForeground(Color.GREEN);
 		rdbtnDIRECT.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("direct", rdbtnDIRECT);
 		
         //Offset
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
-		rdbtnOFFSET.setFocusPainted(false);
 		rdbtnOFFSET.setForeground(Color.GREEN);
 		rdbtnOFFSET.setBackground(new Color(0, 0, 0));
         enableOptionUiMatcher.add("offset", rdbtnOFFSET);
@@ -550,22 +546,6 @@ public class homeScreen extends JFrame {
 				overSampling = oversampleDrop.getSelectedItem().toString();
 			}
 		});
-		
-		try {
-		 	tcpClient = new TcpClient(ipDisplay.getText(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
-            tcpClientThread = new Thread(tcpClient);
-            tcpClientThread.start();
-            listener = new ResponseListener(tcpClient, instance);
-            listenerThread = new Thread(listener);
-            listenerThread.start();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
         
         
         /*
@@ -574,7 +554,6 @@ public class homeScreen extends JFrame {
 		
 		//Stop
 		JButton stopButton = new JButton("Stop");
-		stopButton.setFocusable(false);
 		stopButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		stopButton.setForeground(Color.GREEN);
 		stopButton.setBackground(Color.BLACK);
@@ -586,7 +565,6 @@ public class homeScreen extends JFrame {
 		});
 		
 		JButton defaultButton = new JButton("Defaults");
-		defaultButton.setFocusable(false);
 		defaultButton.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		defaultButton.setBackground(Color.BLACK);
 		defaultButton.setForeground(Color.GREEN);
@@ -639,7 +617,6 @@ public class homeScreen extends JFrame {
                 
         //Execute
 		JButton btnExecute = new JButton("Execute");
-		btnExecute.setFocusable(false);
 		btnExecute.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
 		btnExecute.setBackground(Color.BLACK);
 		btnExecute.setForeground(Color.GREEN);

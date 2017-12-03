@@ -49,7 +49,7 @@ public class keyPad extends JDialog {
 		entryField.setText(currentValue);
 		JLabel lblField = new JLabel(name);
 		lblField.setForeground(Color.GREEN);
-		lblField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		lblField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		
 		
 		JButton button1 = new JButton("1");
