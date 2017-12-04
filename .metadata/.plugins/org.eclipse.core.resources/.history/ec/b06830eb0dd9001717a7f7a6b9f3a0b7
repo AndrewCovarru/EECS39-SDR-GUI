@@ -167,7 +167,7 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("172.19.35.95");
+		ipDisplay.setText("172.20.118.189");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -667,23 +667,21 @@ public class homeScreen extends JFrame {
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				
-				Parameters.ATAN_MATH.append(atanMathDrop.getSelectedItem().toString());
-				Parameters.FIR_SIZE.append(firDrop.getSelectedItem().toString());
-				Parameters.FREQUENCY.append(freqDisplay.getText());
-				Parameters.MODULATION_MODE.append(modMode.getSelectedItem().toString());
-				Parameters.OVERSAMPLING.append(oversampleDrop.getSelectedItem().toString());
-				Parameters.PPM_ERROR.append(ppmDisplay.getText());
-				Parameters.RESAMPLE_RATE.append(resampleDisplay.getText());
-				Parameters.SAMPLE_RATE.append(sampleDisplay.getText());
-				Parameters.SQUELCH_DELAY.append(delayDisplay.getText());
-				Parameters.SQUELCH_LEVEL.append(Integer.toString(squSlider.getValue()));		
-				Parameters.VOLUME.append(Integer.toString(volSlider.getValue()));
+				Parameters.ATAN_MATH.append(atanMath);
+				Parameters.FIR_SIZE.append(firSize);
+				Parameters.FREQUENCY.append(frequency);
+				Parameters.MODULATION_MODE.append(modulationMode);
+				Parameters.OVERSAMPLING.append(overSampling);
+				Parameters.PPM_ERROR.append(ppmError);
+				Parameters.RESAMPLE_RATE.append(resampleRate);
+				Parameters.SAMPLE_RATE.append(sampleRate);
+				Parameters.SQUELCH_DELAY.append(squelchDelay);
+				Parameters.SQUELCH_LEVEL.append(squelch);		
+				Parameters.VOLUME.append(volume);
 				
 				if(gain == "0") {
 					Parameters.TUNER_GAIN.append("default");
 				}		
-				else
-					Parameters.TUNER_GAIN.append(Integer.toString(gainSlider.getValue()));
 				
 				for (Parameters p : Parameters.values())
 		        {

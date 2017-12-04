@@ -128,7 +128,7 @@ public class homeScreen extends JFrame {
 		freqDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		freqDisplay.setForeground(Color.GREEN);
 		freqDisplay.setBackground(new Color(0, 0, 0));
-		freqDisplay.setText("default");
+		freqDisplay.setText("91100000");
 		frequency = freqDisplay.getText();
 		Parameters.FREQUENCY.setUiMembers(freqDisplay, freqDisplay.getClass());
 		freqDisplay.addMouseListener(new MouseAdapter() {
@@ -167,29 +167,19 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("172.19.35.95");
+		ipDisplay.setText("172.20.118.189");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				keyPad ipKeyPad = new keyPad("IP Address: ", ipDisplay.getText());
+				keyPad ipKeyPad = new keyPad("IP Address:", ipDisplay.getText());
 				ipKeyPad.setVisible(true);
 				ipKeyPad.addWindowListener(new WindowListener() {
 			            public void windowClosed(WindowEvent arg0) {
 			                ipDisplay.setText(ipKeyPad.returnField());
-			            		 	if(tcpClient != null && tcpClientThread.isAlive()) 
+			            	 try {
+			            		 	if(tcpClient == null) 
 			            	        {
-			            		 		try
-			            		 		{
-			            		 			tcpClient.terminate();
-			            		 		}
-			            		 		catch (Exception e)
-			            		 		{
-			            		 			e.printStackTrace();
-			            		 		}
-			            	        }
-
-				            	 try {
 			            		 	tcpClient = new TcpClient(ipKeyPad.returnField(), TcpClient.RTLSDRD_DEFAULT_TCP_PORT_NUMBER);
 					                tcpClientThread = new Thread(tcpClient);
 					                tcpClientThread.start();
@@ -269,7 +259,7 @@ public class homeScreen extends JFrame {
 		resampleDisplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				keyPad resampleKeyPad = new keyPad("Resample Rate: ", resampleDisplay.getText());
+				keyPad resampleKeyPad = new keyPad("Resample Rate:", resampleDisplay.getText());
 				resampleKeyPad.setVisible(true);
 				
 				 resampleKeyPad.addWindowListener(new WindowListener() {
@@ -435,7 +425,7 @@ public class homeScreen extends JFrame {
 		//Squelch
 		JSlider squSlider = new JSlider();
 		squSlider.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN));
-		squSlider.setMaximum(1000);
+		squSlider.setMaximum(500);
 		squSlider.setValue(0);
 		Parameters.SQUELCH_LEVEL.setUiMembers(squSlider, squSlider.getClass());
 		squelch = Integer.toString(squSlider.getValue());
@@ -572,8 +562,7 @@ public class homeScreen extends JFrame {
             
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "Error connecting to " + ipDisplay.getText(), "Connection Error", JOptionPane.ERROR_MESSAGE);									
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error connecting to " + ipDisplay.getText(), "Connection Error", JOptionPane.ERROR_MESSAGE);									e.printStackTrace();
 		}
         
         /*
@@ -602,7 +591,7 @@ public class homeScreen extends JFrame {
 		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Text Boxes
-				freqDisplay.setText("default");
+				freqDisplay.setText("91100000");
 				frequency = freqDisplay.getText();
 				
 				sampleDisplay.setText("default");
@@ -667,23 +656,19 @@ public class homeScreen extends JFrame {
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				
-				Parameters.ATAN_MATH.append(atanMathDrop.getSelectedItem().toString());
-				Parameters.FIR_SIZE.append(firDrop.getSelectedItem().toString());
-				Parameters.FREQUENCY.append(freqDisplay.getText());
-				Parameters.MODULATION_MODE.append(modMode.getSelectedItem().toString());
-				Parameters.OVERSAMPLING.append(oversampleDrop.getSelectedItem().toString());
-				Parameters.PPM_ERROR.append(ppmDisplay.getText());
-				Parameters.RESAMPLE_RATE.append(resampleDisplay.getText());
-				Parameters.SAMPLE_RATE.append(sampleDisplay.getText());
-				Parameters.SQUELCH_DELAY.append(delayDisplay.getText());
-				Parameters.SQUELCH_LEVEL.append(Integer.toString(squSlider.getValue()));		
-				Parameters.VOLUME.append(Integer.toString(volSlider.getValue()));
 				
-				if(gain == "0") {
-					Parameters.TUNER_GAIN.append("default");
-				}		
-				else
-					Parameters.TUNER_GAIN.append(Integer.toString(gainSlider.getValue()));
+				Parameters.ATAN_MATH.append(atanMath);
+				Parameters.FIR_SIZE.append(firSize);
+				Parameters.FREQUENCY.append(frequency);
+				Parameters.MODULATION_MODE.append(modulationMode);
+				Parameters.OVERSAMPLING.append(overSampling);
+				Parameters.PPM_ERROR.append(ppmError);
+				Parameters.RESAMPLE_RATE.append(resampleRate);
+				Parameters.SAMPLE_RATE.append(sampleRate);
+				Parameters.SQUELCH_DELAY.append(squelchDelay);
+				Parameters.SQUELCH_LEVEL.append(squelch);
+				Parameters.TUNER_GAIN.append(gain);				
+				Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
 		        {
