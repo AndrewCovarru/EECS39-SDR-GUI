@@ -2,12 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Squelch" key="selection"/>
+		<item value="Volume" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="volume"/>
+			<item value="parseCmds"/>
+			<item value="inUse"/>
+			<item value="commands"/>
+			<item value="layout"/>
+			<item value="button"/>
+			<item value="setSize"/>
 			<item value="squelch"/>
 			<item value="new Color(0, 255, 0)"/>
 			<item value="render"/>
@@ -16,13 +23,6 @@
 			<item value="color.Green"/>
 			<item value="ppmDisplay"/>
 			<item value="Color.White"/>
-			<item value="WHITE"/>
-			<item value="green"/>
-			<item value="oversample"/>
-			<item value="delayDisplay"/>
-			<item value="keyPad"/>
-			<item value="defaults"/>
-			<item value="execute"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Color.GREEN"/>

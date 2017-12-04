@@ -65,7 +65,7 @@ public class ResponseListener implements Runnable {
         }
     }
 
-    public void parseCmdsInUseResponse(String response)
+    private void parseCmdsInUseResponse(String response)
     {
         // Each instance doesn't include the newline character
         String[] responseLines = response.split("\n");

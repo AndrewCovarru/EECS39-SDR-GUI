@@ -28,7 +28,6 @@ public class ResponseListener implements Runnable {
                 final Message msg = tcpClient.getCompletedMessage();
                 if (msg.getResponseMsgType() == Message.ResponseType.ERROR) {
                     System.out.println("ERROR RECEIVED!:\n" + msg.toString());
-                    //Displays commands sent
                     //JOptionPane.showMessageDialog(null, msg.toString(), "Invalid parameter specified", JOptionPane.ERROR_MESSAGE);
                 handleErrorMessage(msg);
                 } else if (msg.getResponseMsgType() == Message.ResponseType.UPDATE_AVAILABLE) {
@@ -39,8 +38,7 @@ public class ResponseListener implements Runnable {
                 else if (msg.getResponseMsgType() == Message.ResponseType.OK)
                 {
                     if (msg.getOutboundMsg().equals("CMDS_IN_USE"))
-                    {	
-                    	// Displays commands sent
+                    {
                         //JOptionPane.showMessageDialog(null, "CMDS_IN_USE RESPONSE:\n" + msg.getResponseMsg());
                         parseCmdsInUseResponse(msg.getResponseMsg());
                     }
@@ -65,7 +63,7 @@ public class ResponseListener implements Runnable {
         }
     }
 
-    public void parseCmdsInUseResponse(String response)
+    private void parseCmdsInUseResponse(String response)
     {
         // Each instance doesn't include the newline character
         String[] responseLines = response.split("\n");

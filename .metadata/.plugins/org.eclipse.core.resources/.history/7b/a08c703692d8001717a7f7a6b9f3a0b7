@@ -410,15 +410,9 @@ public class homeScreen extends JFrame {
 				volLabel.setText("Volume: " + volume);
 				
 				if(!volSlider.getValueIsAdjusting()) {
-					if(Parameters.VOLUME.isIndexValid(0)) {
-						Parameters.VOLUME.replaceIndex(0, volume);
-						tcpClient.sendToServer(Parameters.VOLUME.getDameonCallableStrings().get(0));
-					}
-					else
-						Parameters.VOLUME.append(volume);
-						
+					Parameters.VOLUME.replaceIndex(0, volume);
+					tcpClient.sendToServer(Parameters.VOLUME.getDameonCallableStrings().get(0));
 				}
-					
 			}
 		}
 		);
@@ -559,7 +553,8 @@ public class homeScreen extends JFrame {
             listener = new ResponseListener(tcpClient, instance);
             listenerThread = new Thread(listener);
             listenerThread.start();
-            tcpClient.sendToServer("CMDS_IN_USE");
+           // final Message msg = tcpClient.getCompletedMessage();
+            //listener.parseCmdsInUseResponse(msg.getResponseMsg());
             
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

@@ -38,8 +38,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import com.bensherman.rtlsdrdjava.tcpcli.Message;
 import com.bensherman.rtlsdrdjava.tcpcli.TcpClient;
 import javax.swing.JEditorPane;
 import java.awt.event.MouseAdapter;
@@ -105,9 +103,8 @@ public class homeScreen extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws InterruptedException 
 	 */
-	public homeScreen() throws InterruptedException {
+	public homeScreen() {
 	    instance = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 450);
@@ -166,7 +163,7 @@ public class homeScreen extends JFrame {
 		ipDisplay.setForeground(Color.GREEN);
 		ipDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		ipDisplay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		ipDisplay.setText("172.20.118.189");
+		ipDisplay.setText("127.0.0.1");
 		ipDisplay.setEditable(false);
 		ipDisplay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -408,20 +405,22 @@ public class homeScreen extends JFrame {
 			public void stateChanged(ChangeEvent arg0) {
 				volume = Integer.toString(volSlider.getValue());
 				volLabel.setText("Volume: " + volume);
-				
 				if(!volSlider.getValueIsAdjusting()) {
-					if(Parameters.VOLUME.isIndexValid(0)) {
-						Parameters.VOLUME.replaceIndex(0, volume);
-						tcpClient.sendToServer(Parameters.VOLUME.getDameonCallableStrings().get(0));
-					}
-					else
-						Parameters.VOLUME.append(volume);
-						
+				
+				Parameters.VOLUME.append(volume);
+				
+				for (Parameters p : Parameters.values())
+		        {
+		            for(String s : p.getDameonCallableStrings()){
+
+		                tcpClient.sendToServer(s);
+		            }
+		            p.resetValues();
+		        }
+				tcpClient.sendToServer("EXECUTE");
 				}
-					
 			}
-		}
-		);
+		});
 		
 		//Squelch
 		JSlider squSlider = new JSlider();
@@ -559,8 +558,6 @@ public class homeScreen extends JFrame {
             listener = new ResponseListener(tcpClient, instance);
             listenerThread = new Thread(listener);
             listenerThread.start();
-            tcpClient.sendToServer("CMDS_IN_USE");
-            
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -662,18 +659,40 @@ public class homeScreen extends JFrame {
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				
-				
+				System.out.println("Atan Math: " + atanMath);
 				Parameters.ATAN_MATH.append(atanMath);
+				
+				System.out.println("FIR Size: " + firSize);
 				Parameters.FIR_SIZE.append(firSize);
+				
+				System.out.println("Frequency:" + frequency);
 				Parameters.FREQUENCY.append(frequency);
+				
+				System.out.println("Modulation Mode: " + modulationMode);
 				Parameters.MODULATION_MODE.append(modulationMode);
+				
+				System.out.println("Oversampling: " + overSampling);
 				Parameters.OVERSAMPLING.append(overSampling);
+				
+				System.out.println("PPM Error: " + ppmError);
 				Parameters.PPM_ERROR.append(ppmError);
+				
+				System.out.println("Resample Rate: " + resampleRate);
 				Parameters.RESAMPLE_RATE.append(resampleRate);
+				
+				System.out.println("Sample Rate: " + sampleRate);
 				Parameters.SAMPLE_RATE.append(sampleRate);
+				
+				System.out.println("Squelch Delay: " + squelchDelay);
 				Parameters.SQUELCH_DELAY.append(squelchDelay);
+				
+				System.out.println("Squelch: " + squelch);
 				Parameters.SQUELCH_LEVEL.append(squelch);
-				Parameters.TUNER_GAIN.append(gain);				
+				
+				System.out.println("Gain: "+ gain);
+				Parameters.TUNER_GAIN.append(gain);
+				
+				System.out.println("Volume:" + volume);
 				Parameters.VOLUME.append(volume);
 				
 				for (Parameters p : Parameters.values())
