@@ -568,6 +568,8 @@ public class homeScreen extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+        
         
         /*
          * Contains the two JButtons used throughout. Execute and Stop
