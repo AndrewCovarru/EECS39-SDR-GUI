@@ -199,8 +199,7 @@ public class homeScreen extends JFrame {
 					                tcpClient.sendToServer("CMDS_IN_USE");
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
-									JOptionPane.showMessageDialog(null, "Error connecting to " + ipDisplay.getText(), "Connection Error", JOptionPane.ERROR_MESSAGE);	
-									e.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Error connecting to " + ipDisplay.getText(), "Connection Error", JOptionPane.ERROR_MESSAGE);									e.printStackTrace();
 								}
 			            }
 			            public void windowActivated(WindowEvent arg0) {
@@ -456,16 +455,13 @@ public class homeScreen extends JFrame {
 		
 		//Edge
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
-		rdbtnEDGE.setFocusable(false);
 		rdbtnEDGE.setFocusPainted(false);
 		rdbtnEDGE.setForeground(Color.GREEN);
 		rdbtnEDGE.setBackground(new Color(0, 0, 0));
 		enableOptionUiMatcher.add("edge", rdbtnEDGE);
 		
-		
 		//DC
 		JRadioButton rdbtnDC = new JRadioButton("dc");
-		rdbtnDC.setFocusable(false);
 		rdbtnDC.setFocusPainted(false);
 		rdbtnDC.setBackground(new Color(0, 0, 0));
 		rdbtnDC.setForeground(Color.GREEN);
@@ -473,7 +469,6 @@ public class homeScreen extends JFrame {
 		
 	    //DEEMP
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
-		rdbtnDEEMP.setFocusable(false);
 		rdbtnDEEMP.setFocusPainted(false);
 		rdbtnDEEMP.setForeground(Color.GREEN);
 		rdbtnDEEMP.setBackground(new Color(0, 0, 0));
@@ -481,7 +476,6 @@ public class homeScreen extends JFrame {
 		
         //Direct
 		JRadioButton rdbtnDIRECT = new JRadioButton("direct");
-		rdbtnDIRECT.setFocusable(false);
 		rdbtnDIRECT.setFocusPainted(false);
 		rdbtnDIRECT.setForeground(Color.GREEN);
 		rdbtnDIRECT.setBackground(new Color(0, 0, 0));
@@ -489,7 +483,6 @@ public class homeScreen extends JFrame {
 		
         //Offset
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
-		rdbtnOFFSET.setFocusable(false);
 		rdbtnOFFSET.setFocusPainted(false);
 		rdbtnOFFSET.setForeground(Color.GREEN);
 		rdbtnOFFSET.setBackground(new Color(0, 0, 0));
@@ -665,33 +658,14 @@ public class homeScreen extends JFrame {
 				//Checks each of the radio buttons
 				if(rdbtnEDGE.isSelected())
 					Parameters.ENABLE_OPTION.append("edge");
-				else
-					Parameters.ENABLE_OPTION.remove("edge");
-				
-				
 				if(rdbtnDC.isSelected())
 					Parameters.ENABLE_OPTION.append("dc");
-				else 
-					Parameters.ENABLE_OPTION.remove("dc");
-				
-				
 				if(rdbtnDEEMP.isSelected())
 					Parameters.ENABLE_OPTION.append("deemp");
-				else
-					Parameters.ENABLE_OPTION.remove("deemp");;
-				
-				
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("direct");
-				else
-					Parameters.ENABLE_OPTION.remove("direct");
-				
-				
-				if(rdbtnOFFSET.isSelected())
+				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
-				else
-					Parameters.ENABLE_OPTION.remove("offset");
-					
 				
 				Parameters.ATAN_MATH.append(atanMathDrop.getSelectedItem().toString());
 				Parameters.FIR_SIZE.append(firDrop.getSelectedItem().toString());

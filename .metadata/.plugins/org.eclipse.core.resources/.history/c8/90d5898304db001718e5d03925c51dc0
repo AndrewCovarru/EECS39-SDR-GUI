@@ -663,34 +663,29 @@ public class homeScreen extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//Checks each of the radio buttons
-				if(rdbtnEDGE.isSelected())
-					Parameters.ENABLE_OPTION.append("edge");
+				if(!rdbtnEDGE.isSelected())
+					Parameters.ENABLE_OPTION.append("");
 				else
-					Parameters.ENABLE_OPTION.remove("edge");
+					Parameters.ENABLE_OPTION.append("edge");
+				
 				
 				
 				if(rdbtnDC.isSelected())
 					Parameters.ENABLE_OPTION.append("dc");
 				else 
-					Parameters.ENABLE_OPTION.remove("dc");
-				
-				
+					Parameters.ENABLE_OPTION.replaceIndex(0, " ");
 				if(rdbtnDEEMP.isSelected())
 					Parameters.ENABLE_OPTION.append("deemp");
 				else
-					Parameters.ENABLE_OPTION.remove("deemp");;
-				
-				
+					Parameters.ENABLE_OPTION.replaceIndex(0, " ");
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("direct");
 				else
-					Parameters.ENABLE_OPTION.remove("direct");
-				
-				
-				if(rdbtnOFFSET.isSelected())
+					Parameters.ENABLE_OPTION.replaceIndex(0, " ");
+				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				else
-					Parameters.ENABLE_OPTION.remove("offset");
+					Parameters.ENABLE_OPTION.replaceIndex(0, " ");
 					
 				
 				Parameters.ATAN_MATH.append(atanMathDrop.getSelectedItem().toString());

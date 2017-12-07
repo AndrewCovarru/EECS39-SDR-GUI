@@ -687,7 +687,7 @@ public class homeScreen extends JFrame {
 					Parameters.ENABLE_OPTION.remove("direct");
 				
 				
-				if(rdbtnOFFSET.isSelected())
+				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
 				else
 					Parameters.ENABLE_OPTION.remove("offset");

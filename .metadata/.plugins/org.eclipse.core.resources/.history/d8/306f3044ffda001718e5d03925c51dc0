@@ -456,7 +456,6 @@ public class homeScreen extends JFrame {
 		
 		//Edge
 		JRadioButton rdbtnEDGE = new JRadioButton("edge");
-		rdbtnEDGE.setFocusable(false);
 		rdbtnEDGE.setFocusPainted(false);
 		rdbtnEDGE.setForeground(Color.GREEN);
 		rdbtnEDGE.setBackground(new Color(0, 0, 0));
@@ -465,7 +464,6 @@ public class homeScreen extends JFrame {
 		
 		//DC
 		JRadioButton rdbtnDC = new JRadioButton("dc");
-		rdbtnDC.setFocusable(false);
 		rdbtnDC.setFocusPainted(false);
 		rdbtnDC.setBackground(new Color(0, 0, 0));
 		rdbtnDC.setForeground(Color.GREEN);
@@ -473,7 +471,6 @@ public class homeScreen extends JFrame {
 		
 	    //DEEMP
 		JRadioButton rdbtnDEEMP = new JRadioButton("deemp");
-		rdbtnDEEMP.setFocusable(false);
 		rdbtnDEEMP.setFocusPainted(false);
 		rdbtnDEEMP.setForeground(Color.GREEN);
 		rdbtnDEEMP.setBackground(new Color(0, 0, 0));
@@ -489,7 +486,6 @@ public class homeScreen extends JFrame {
 		
         //Offset
 		JRadioButton rdbtnOFFSET = new JRadioButton("offset");
-		rdbtnOFFSET.setFocusable(false);
 		rdbtnOFFSET.setFocusPainted(false);
 		rdbtnOFFSET.setForeground(Color.GREEN);
 		rdbtnOFFSET.setBackground(new Color(0, 0, 0));
@@ -666,31 +662,15 @@ public class homeScreen extends JFrame {
 				if(rdbtnEDGE.isSelected())
 					Parameters.ENABLE_OPTION.append("edge");
 				else
-					Parameters.ENABLE_OPTION.remove("edge");
-				
-				
+					Parameters.ENABLE_OPTION.replaceIndex(0, " ");
 				if(rdbtnDC.isSelected())
 					Parameters.ENABLE_OPTION.append("dc");
-				else 
-					Parameters.ENABLE_OPTION.remove("dc");
-				
-				
 				if(rdbtnDEEMP.isSelected())
 					Parameters.ENABLE_OPTION.append("deemp");
-				else
-					Parameters.ENABLE_OPTION.remove("deemp");;
-				
-				
 				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("direct");
-				else
-					Parameters.ENABLE_OPTION.remove("direct");
-				
-				
-				if(rdbtnOFFSET.isSelected())
+				if(rdbtnDIRECT.isSelected())
 					Parameters.ENABLE_OPTION.append("offset");
-				else
-					Parameters.ENABLE_OPTION.remove("offset");
 					
 				
 				Parameters.ATAN_MATH.append(atanMathDrop.getSelectedItem().toString());
